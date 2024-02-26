@@ -1,0 +1,190 @@
+.ol-control.ol-layerswitcher-chameleon.ol-layer-shop-chameleon {
+  height: calc(100% - 4em);
+  max-height: unset;
+  max-width: 20em;
+  min-width: 20em;
+  background-color: transparent;
+  pointer-events: none!important;
+  overflow: visible;
+}
+.ol-control.ol-layerswitcher-chameleon > * {
+  pointer-events: auto;
+}
+
+.ol-control.ol-layer-shop-chameleon > button,
+.ol-control.ol-layer-shop-chameleon .panel-container {
+  box-shadow: 0 0 0 3px rgba(255,255,255,.5);
+}
+.ol-control.ol-layerswitcher-chameleon.ol-layer-shop-chameleon .panel-container {
+  overflow-y: scroll;
+  max-height: calc(100% - 6.5em);
+  border: 2px solid #fdc900;
+  border-width: 2px 0;
+  padding: 0;
+}
+.ol-control.ol-layer-shop-chameleon .panel {
+  padding: 0;
+  box-sizing: border-box;
+  margin: .25em .5em;
+}
+.ol-control.ol-layerswitcher-chameleon.ol-layer-shop-chameleon .panel-container.ol-scrolldiv {
+  overflow: hidden;
+}
+.ol-control.ol-layer-shop-chameleon .ol-scroll {
+  background-color: rgba(0,0,0,.3);
+  opacity: .5;
+}
+.ol-layerswitcher-chameleon.ol-layer-shop-chameleon ul.panel li.ol-header {
+  display: none;
+}
+.ol-layerswitcher-chameleon.ol-layer-shop-chameleon ul.panel li {
+  margin-right: 0;
+  padding-right: 0;
+}
+.ol-layerswitcher-chameleon.ol-layer-shop-chameleon .layerup {
+  height: 1.5em;
+  width: 1.4em;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: transparent;
+  color: rgba(219,223,233,1);
+}
+.ol-layerswitcher-chameleon.ol-layer-shop-chameleon .layerup:hover {
+  background-color: rgba(88,59,105,.3);
+}
+.ol-layerswitcher-chameleon.ol-layer-shop-chameleon .layerup:before {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0;
+  background-color: currentColor;
+  width: 1em;
+  height: 2px;
+  box-shadow: 0 -4px, 0 4px;
+}
+.ol-layerswitcher-chameleon.ol-layer-shop-chameleon .layerup:after {
+  content: unset;
+}
+
+.ol-control.ol-layer-shop-chameleon .ol-title-bar {
+  background-color: rgba(255,255,255,.5);
+  font-size: .9em;
+  height: calc(2.8em - 4px);
+  max-width: 14.6em;
+  padding: .7em .5em;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+  transform: scaleY(1.1);
+  transition: transform .1s, width 0s;
+  transform-origin: 100% 0;
+}
+.ol-control.ol-layer-shop-chameleon:hover .ol-title-bar {
+  background-color: rgba(255,255,255,.7);
+}
+.ol-control.ol-layer-shop-chameleon.ol-collapsed .ol-title-bar {
+  max-width: 10em;
+  transform: scale(.9, 1.1);
+}
+.ol-control.ol-layer-shop-chameleon.ol-forceopen .ol-title-bar {
+  max-width: 14.6em;
+  transform: scaleY(1.1);
+}
+
+.ol-control.ol-layer-shop-chameleon .ol-bar {
+  position: relative;
+  height: 1.75em;
+  clear: both;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.5);
+  background-color: #fff;
+  text-align: right;
+  z-index: 10;
+}
+.ol-control.ol-layer-shop-chameleon.ol-collapsed .ol-scroll,
+.ol-control.ol-layer-shop-chameleon.ol-collapsed .ol-bar {
+  border-width: 2px 0 0;
+  display: none;
+}
+.ol-control.ol-layer-shop-chameleon.ol-forceopen .ol-scroll,
+.ol-control.ol-layer-shop-chameleon.ol-forceopen .ol-bar  {
+  display: block;
+}
+.ol-control.ol-layer-shop-chameleon .ol-bar > * {
+  font-size: .9em;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: .25em;
+  background-color: transparent;
+}
+
+.ol-layer-shop-chameleon .ol-bar .ol-button,
+.ol-touch .ol-layer-shop-chameleon .ol-bar .ol-button {
+  position: relative;
+  top: unset;
+  left: unset;
+  bottom: unset;
+  right: unset;
+  margin: 0;
+  display: inline-block;
+}
+.ol-layer-shop-chameleon .ol-bar button {
+  background-color: #fff;
+  color: rgba(253,201,0,1)
+}
+.ol-layer-shop-chameleon .ol-bar button:hover {
+  background-color: rgba(253,201,0,.2);
+}
+
+/* Touch device */
+.ol-touch .ol-layerswitcher-chameleon.ol-layer-shop-chameleon > button {
+  font-size: 1.7em;
+}
+.ol-touch .ol-layer-shop-chameleon .ol-bar {
+  height: 2em;
+}
+.ol-touch .ol-layer-shop-chameleon .ol-control button {
+  font-size: 1.4em;
+}
+.ol-touch .ol-control.ol-layer-shop-chameleon .panel {
+  max-height: calc(100% - 7em);
+}
+.ol-touch .ol-control.ol-layer-shop-chameleon .panel label {
+  height: 1.8em;
+}
+.ol-touch .ol-control.ol-layer-shop-chameleon .panel label span {
+  margin-left: .5em;
+  padding-top: .25em;
+}
+.ol-touch .ol-control.ol-layer-shop-chameleon .panel label:before,
+.ol-touch .ol-control.ol-layer-shop-chameleon .panel label:after {
+  font-size: 1.3em;
+  z-index: 1;
+}
+
+.layerswitcher-opacity {
+  display: none;
+}
+
+.extra-layer-data {
+  position: relative;
+  left: 1.7em;
+  padding-top: 0px;
+  margin-top: -7px;
+  margin-bottom: 5px;
+  display: block;
+  font-size: 0.9em;
+}
+.toolbar-options {
+  width: 100%;
+  display: inline-block;
+  padding-bottom: 1em;
+  text-align: center;
+}
+.ol-title-bar {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0.5em;
+}
