@@ -45,7 +45,9 @@ tidop: {
   time: {
     enable: true,
     value: '2023-01-01/2023-01-01',
-    lock: true
+    lock: true,
+    lockClass: 'fa-solid fa-lock',
+    unlockClass: 'fa-solid fa-lock-open'
   }
 }
         </code>
@@ -98,9 +100,6 @@ tidop: {
           lock: true,
           lockClass: 'fa-solid fa-lock',
           unlockClass: 'fa-solid fa-lock-open'
-        },
-        remove: {
-          enable: true
         }
       }
 
