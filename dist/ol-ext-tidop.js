@@ -1,7 +1,7 @@
 /**
  * ol-ext-tidop - A set of cool extensions for OpenLayers (ol) in node modules structure
  * @description ol3,openlayers,popup,menu,symbol,renderer,filter,canvas,interaction,split,statistic,charts,pie,LayerSwitcher,toolbar,animation
- * @version v0.0.22
+ * @version v0.0.27
  * @author 
  * @see https://github.com/Viglino/ol-ext#,
  * @license BSD-3-Clause
@@ -13426,13 +13426,13 @@ ol.control.LayerShopChameleon = class olcontrolLayerShopChameleon extends ol.con
     if (layer instanceof ol.layer.Group)
       this.lockDiv.classList.add('d-none-tidop')
     else {
-      if (layer.get('tidop') === undefined)
+      if (layer.get('tidop') === undefined || layer.get('tidop') === null)
         this.lockDiv.classList.add('d-none-tidop')
       else
-      if (layer.get('tidop').time === undefined)
+      if (layer.get('tidop').time === undefined || layer.get('tidop').time === null)
         this.lockDiv.classList.add('d-none-tidop')
       else
-      if (layer.get('tidop').time.lock === undefined)
+      if (layer.get('tidop').time.lock === undefined || layer.get('tidop').time.lock === null)
         this.lockDiv.classList.add('d-none-tidop')
       else
         this.lockDiv.classList.remove('d-none-tidop')
@@ -13557,42 +13557,40 @@ ol.control.LayerShopChameleon = class olcontrolLayerShopChameleon extends ol.con
           //html: 'prueba',
           parent: d
         })
-      if (layer.get('tidop')) {
-        if (layer.get('tidop').time) {
+      if (layer.get('tidop') !== undefined && layer.get('tidop') !== null) {
+        if (layer.get('tidop').time !== undefined && layer.get('tidop').time !== null) {
           var timeContent = '';
-          if (layer.get('tidop').time.enable) {
-            var iconLock = 'fa-solid fa-lock'
-            if (layer.get('tidop').time.lockClass !== undefined)
-              iconLock = layer.get('tidop').time.lockClass
-            var iconUnlock = 'fa-solid fa-lock-open'
-            if (layer.get('tidop').time.unlockClass !== undefined)
-              iconUnlock = layer.get('tidop').time.unlockClass;
-            if (layer.get('tidop').time.lock !== undefined) {
-              var c = this.lockI.getAttribute('class').split(' ')
-              c.forEach((item, id) => {
-                this.lockI.classList.remove(item)
-              })
-              if (layer.get('tidop').time.lock === true) {
-                timeContent += '<i class="' + iconLock + ' " style="margin-right: 3px;"></i>'
-                var lockClassArray = iconLock.split(' ')
-                for (var x=0;x<lockClassArray.length;x++)
-                  this.lockI.classList.add(lockClassArray[x])
-              }
-              else {
-                timeContent += '<i class="' + iconUnlock + ' " style="margin-right: 3px;"></i>'
-                var unlockClassArray = iconUnlock.split(' ')
-                for (var x=0;x<unlockClassArray.length;x++)
-                  this.lockI.classList.add(unlockClassArray[x])
-              }
+          var iconLock = 'fa-solid fa-lock'
+          if (layer.get('tidop').time.lockClass !== undefined && layer.get('tidop').time.lockClass !== null)
+            iconLock = layer.get('tidop').time.lockClass
+          var iconUnlock = 'fa-solid fa-lock-open'
+          if (layer.get('tidop').time.unlockClass !== undefined && layer.get('tidop').time.unlockClass !== null)
+            iconUnlock = layer.get('tidop').time.unlockClass;
+          if (layer.get('tidop').time.lock !== undefined && layer.get('tidop').time.lock !== null) {
+            var c = this.lockI.getAttribute('class').split(' ')
+            c.forEach((item, id) => {
+              this.lockI.classList.remove(item)
+            })
+            if (layer.get('tidop').time.lock === true) {
+              timeContent += '<i class="' + iconLock + ' " style="margin-right: 3px;"></i>'
+              var lockClassArray = iconLock.split(' ')
+              for (var x=0;x<lockClassArray.length;x++)
+                this.lockI.classList.add(lockClassArray[x])
             }
-            if (layer.get('tidop').time.value) {
-              var time = layer.get('tidop').time.value
-              var extra_layer_data = document.getElementsByClassName(layer.get('id') + '-extra-layer-data')[0];
-              if (time !== '' && time !== undefined)
-                extra_layer_data.innerHTML = timeContent + time
-              else
-                extra_layer_data.innerHTML = ''
+            else {
+              timeContent += '<i class="' + iconUnlock + ' " style="margin-right: 3px;"></i>'
+              var unlockClassArray = iconUnlock.split(' ')
+              for (var x=0;x<unlockClassArray.length;x++)
+                this.lockI.classList.add(unlockClassArray[x])
             }
+          }
+          if (layer.get('tidop').time.value) {
+            var time = layer.get('tidop').time.value
+            var extra_layer_data = document.getElementsByClassName(layer.get('id') + '-extra-layer-data')[0];
+            if (time !== '' && time !== undefined)
+              extra_layer_data.innerHTML = timeContent + time
+            else
+              extra_layer_data.innerHTML = ''
           }
         }
       }
@@ -13956,16 +13954,16 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
     if (layer instanceof ol.layer.Group)
       this.lockDiv.classList.add('d-none-tidop')
     else {
-      if (layer.get('tidop') === undefined)
+      if (layer.get('tidop') === undefined || layer.get('tidop') === null)
         this.lockDiv.classList.add('d-none-tidop')
       else
-        if (layer.get('tidop').time === undefined)
-          this.lockDiv.classList.add('d-none-tidop')
-        else
-          if (layer.get('tidop').time.lock === undefined)
-            this.lockDiv.classList.add('d-none-tidop')
-          else
-            this.lockDiv.classList.remove('d-none-tidop')
+      if (layer.get('tidop').time === undefined || layer.get('tidop').time === null)
+        this.lockDiv.classList.add('d-none-tidop')
+      else
+      if (layer.get('tidop').time.lock === undefined || layer.get('tidop').time.lock === null)
+        this.lockDiv.classList.add('d-none-tidop')
+      else
+        this.lockDiv.classList.remove('d-none-tidop')
     }
     // Opacity
     this.opacityInput.value = layer.getOpacity()
@@ -14087,42 +14085,40 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
           //html: 'prueba',
           parent: d
         })
-      if (layer.get('tidop')) {
-        if (layer.get('tidop').time) {
+      if (layer.get('tidop') !== undefined && layer.get('tidop') !== null) {
+        if (layer.get('tidop').time !== undefined && layer.get('tidop').time !== null) {
           var timeContent = '';
-          if (layer.get('tidop').time.enable) {
-            var iconLock = 'fa-solid fa-lock'
-            if (layer.get('tidop').time.lockClass !== undefined)
-              iconLock = layer.get('tidop').time.lockClass
-            var iconUnlock = 'fa-solid fa-lock-open'
-            if (layer.get('tidop').time.unlockClass !== undefined)
-              iconUnlock = layer.get('tidop').time.unlockClass;
-            if (layer.get('tidop').time.lock !== undefined) {
-              var c = this.lockI.getAttribute('class').split(' ')
-              c.forEach((item, id) => {
-                this.lockI.classList.remove(item)
-              })
-              if (layer.get('tidop').time.lock === true) {
-                timeContent += '<i class="' + iconLock + ' " style="margin-right: 3px;"></i>'
-                var lockClassArray = iconLock.split(' ')
-                for (var x=0;x<lockClassArray.length;x++)
-                  this.lockI.classList.add(lockClassArray[x])
-              }
-              else {
-                timeContent += '<i class="' + iconUnlock + ' " style="margin-right: 3px;"></i>'
-                var unlockClassArray = iconUnlock.split(' ')
-                for (var x=0;x<unlockClassArray.length;x++)
-                  this.lockI.classList.add(unlockClassArray[x])
-              }
+          var iconLock = 'fa-solid fa-lock'
+          if (layer.get('tidop').time.lockClass !== undefined && layer.get('tidop').time.lockClass !== null)
+            iconLock = layer.get('tidop').time.lockClass
+          var iconUnlock = 'fa-solid fa-lock-open'
+          if (layer.get('tidop').time.unlockClass !== undefined && layer.get('tidop').time.unlockClass !== null)
+            iconUnlock = layer.get('tidop').time.unlockClass;
+          if (layer.get('tidop').time.lock !== undefined && layer.get('tidop').time.lock !== null) {
+            var c = this.lockI.getAttribute('class').split(' ')
+            c.forEach((item, id) => {
+              this.lockI.classList.remove(item)
+            })
+            if (layer.get('tidop').time.lock === true) {
+              timeContent += '<i class="' + iconLock + ' " style="margin-right: 3px;"></i>'
+              var lockClassArray = iconLock.split(' ')
+              for (var x=0;x<lockClassArray.length;x++)
+                this.lockI.classList.add(lockClassArray[x])
             }
-            if (layer.get('tidop').time.value) {
-              var time = layer.get('tidop').time.value
-              var extra_layer_data = document.getElementsByClassName(layer.get('id') + '-extra-layer-data')[0];
-              if (time !== '' && time !== undefined)
-                extra_layer_data.innerHTML = timeContent + time
-              else
-                extra_layer_data.innerHTML = ''
+            else {
+              timeContent += '<i class="' + iconUnlock + ' " style="margin-right: 3px;"></i>'
+              var unlockClassArray = iconUnlock.split(' ')
+              for (var x=0;x<unlockClassArray.length;x++)
+                this.lockI.classList.add(unlockClassArray[x])
             }
+          }
+          if (layer.get('tidop').time.value) {
+            var time = layer.get('tidop').time.value
+            var extra_layer_data = document.getElementsByClassName(layer.get('id') + '-extra-layer-data')[0];
+            if (time !== '' && time !== undefined)
+              extra_layer_data.innerHTML = timeContent + time
+            else
+              extra_layer_data.innerHTML = ''
           }
         }
       }
