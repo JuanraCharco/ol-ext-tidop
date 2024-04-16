@@ -1,0 +1,129 @@
+.ol-control.ol-legend-tidop {
+  bottom: .5em;
+  left: .5em;
+  z-index: 1;
+  max-height: 90%;
+  max-width: 90%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: rgba(255,255,255,.6);
+}
+.ol-control.ol-legend-tidop:hover {
+  background-color: rgba(255,255,255,.8);
+}
+.ol-control.ol-legend-tidop.ol-empty,
+.ol-control.ol-legend-tidop.ol-collapsed {
+  overflow: hidden;
+}
+.ol-control.ol-legend-tidop button {
+  position: relative;
+  display: none;
+}
+.ol-control.ol-legend-tidop.ol-empty button,
+.ol-control.ol-legend-tidop.ol-collapsed button {
+  display: block;
+}
+.ol-control.ol-legend-tidop.ol-uncollapsible button {
+  display: none;
+}
+
+.ol-control.ol-legend-tidop > ul,
+.ol-control.ol-legend-tidop > canvas {
+  margin: 2px;
+}
+
+.ol-control.ol-legend-tidop button.ol-closebox {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  cursor: pointer;
+  z-index: 1;
+}
+.ol-control.ol-legend-tidop.ol-empty button.ol-closebox,
+.ol-control.ol-legend-tidop.ol-uncollapsible button.ol-closebox,
+.ol-control.ol-legend-tidop.ol-collapsed button.ol-closebox {
+  display: none;
+}
+.ol-control.ol-legend-tidop button.ol-closebox:before {
+  content: "\D7";
+  background: none;
+  color: rgba(0,60,136,.5);
+  font-size: 1.3em;
+}
+.ol-control.ol-legend-tidop button.ol-closebox:hover:before {
+  color: rgba(0,60,136,1);
+}
+.ol-control.ol-legend-tidop .ol-legendImg {
+  display: block;
+}
+.ol-control.ol-legend-tidop.ol-empty .ol-legendImg,
+.ol-control.ol-legend-tidop.ol-collapsed .ol-legendImg {
+  display: none;
+}
+.ol-control.ol-legend-tidop.ol-uncollapsible .ol-legendImg {
+  display: block;
+}
+
+.ol-control.ol-legend-tidop > button:first-child:before,
+.ol-control.ol-legend-tidop > button:first-child:after {
+  content: "";
+  position: absolute;
+  top: .25em;
+  left: .2em;
+  width: .2em;
+  height: .2em;
+  background-color: currentColor;
+  box-shadow: 0 0.35em, 0 0.7em;
+}
+.ol-control.ol-legend-tidop button:first-child:after {
+  top: .27em;
+  left: .55em;
+  height: .15em;
+  width: .6em;
+}
+
+ul.ol-legend-tidop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ol-control.ol-legend-tidop.ol-empty ul,
+.ol-control.ol-legend-tidop.ol-collapsed ul {
+  display: none;
+}
+.ol-control.ol-legend-tidop.ol-uncollapsible ul {
+  display: block;
+}
+ul.ol-legend-tidop li.ol-title {
+  text-align: center;
+  font-weight: bold;
+}
+ul.ol-legend-tidop li.ol-title > div:first-child {
+  width: 0!important;
+}
+ul.ol-legend-tidop li {
+  overflow: hidden;
+  padding: 0;
+  white-space: nowrap;
+}
+ul.ol-legend-tidop li div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.ol-control.ol-legend-tidop .ol-legend-tidop {
+  display: inline-block;
+}
+.ol-control.ol-legend-tidop.ol-empty .ol-legend-tidop,
+.ol-control.ol-legend-tidop.ol-collapsed .ol-legend-tidop {
+  display: none;
+}
+.ol-control.ol-legend-tidop.ol-empty button {
+  opacity: .4;
+}

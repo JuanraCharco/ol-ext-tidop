@@ -3414,6 +3414,101 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   font-family:Verdana, Geneva, sans-serif;
   font-size:0.8em;
 }
+.ol-control.ol-layerswitcher-image-tidop {
+  position: absolute;
+  right: 0.5em;
+  text-align: left;
+  top: 1em;
+  transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+}
+.ol-control.ol-layerswitcher-image-tidop.ol-collapsed {
+  top:3em;
+  -webkit-transition: none;
+  transition: none;
+}
+
+.ol-layerswitcher-image-tidop .panel {
+  list-style: none;
+  padding: 0.25em;
+  margin:0;
+  overflow: hidden;
+}
+
+.ol-layerswitcher-image-tidop .panel ul {
+  list-style: none;
+  padding: 0 0 0 20px;
+  overflow: hidden;
+}
+
+.ol-layerswitcher-image-tidop.ol-collapsed .panel {
+  display:none;
+}
+.ol-layerswitcher-image-tidop.ol-forceopen .panel {
+  display:block;
+  clear:both;
+}
+
+.ol-layerswitcher-image-tidop button {
+  float: right;
+  display:none;
+}
+
+.ol-layerswitcher-image-tidop.ol-collapsed button {
+  display:block;
+  position:relative;
+}
+
+.ol-layerswitcher-image-tidop li {
+  border-radius: 4px;
+  border: 3px solid transparent;
+  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+          box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin:2px;
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+  vertical-align: middle;
+  cursor:pointer;
+}
+.ol-layerswitcher-image-tidop li.ol-layer-hidden {
+  opacity: 0.5;
+  border-color:#555;
+}
+.ol-layerswitcher-image-tidop li.ol-header {
+  display: none;
+}
+
+.ol-layerswitcher-image-tidop li img {
+  position:absolute;
+  max-width:100%;
+}
+.ol-layerswitcher-image-tidop li.select,
+.ol-layerswitcher-image-tidop li.ol-visible {
+  border: 3px solid red;
+}
+
+.ol-layerswitcher-image-tidop li p {
+  display:none;
+}
+.ol-layerswitcher-image-tidop li:hover p {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  bottom: 0;
+  display: block;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  height:1.2em;
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:0.8em;
+}
 .ol-control.ol-layerswitcher-tidop {
   position: absolute;
   right: 0.5em;
@@ -4044,6 +4139,136 @@ ul.ol-legend li div {
 .ol-control.ol-legend.ol-empty button {
   opacity: .4;
 }
+.ol-control.ol-legend-tidop {
+  bottom: .5em;
+  left: .5em;
+  z-index: 1;
+  max-height: 90%;
+  max-width: 90%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: rgba(255,255,255,.6);
+}
+.ol-control.ol-legend-tidop:hover {
+  background-color: rgba(255,255,255,.8);
+}
+.ol-control.ol-legend-tidop.ol-empty,
+.ol-control.ol-legend-tidop.ol-collapsed {
+  overflow: hidden;
+}
+.ol-control.ol-legend-tidop button {
+  position: relative;
+  display: none;
+}
+.ol-control.ol-legend-tidop.ol-empty button,
+.ol-control.ol-legend-tidop.ol-collapsed button {
+  display: block;
+}
+.ol-control.ol-legend-tidop.ol-uncollapsible button {
+  display: none;
+}
+
+.ol-control.ol-legend-tidop > ul,
+.ol-control.ol-legend-tidop > canvas {
+  margin: 2px;
+}
+
+.ol-control.ol-legend-tidop button.ol-closebox {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  cursor: pointer;
+  z-index: 1;
+}
+.ol-control.ol-legend-tidop.ol-empty button.ol-closebox,
+.ol-control.ol-legend-tidop.ol-uncollapsible button.ol-closebox,
+.ol-control.ol-legend-tidop.ol-collapsed button.ol-closebox {
+  display: none;
+}
+.ol-control.ol-legend-tidop button.ol-closebox:before {
+  content: "\D7";
+  background: none;
+  color: rgba(0,60,136,.5);
+  font-size: 1.3em;
+}
+.ol-control.ol-legend-tidop button.ol-closebox:hover:before {
+  color: rgba(0,60,136,1);
+}
+.ol-control.ol-legend-tidop .ol-legendImg {
+  display: block;
+}
+.ol-control.ol-legend-tidop.ol-empty .ol-legendImg,
+.ol-control.ol-legend-tidop.ol-collapsed .ol-legendImg {
+  display: none;
+}
+.ol-control.ol-legend-tidop.ol-uncollapsible .ol-legendImg {
+  display: block;
+}
+
+.ol-control.ol-legend-tidop > button:first-child:before,
+.ol-control.ol-legend-tidop > button:first-child:after {
+  content: "";
+  position: absolute;
+  top: .25em;
+  left: .2em;
+  width: .2em;
+  height: .2em;
+  background-color: currentColor;
+  -webkit-box-shadow: 0 0.35em, 0 0.7em;
+          box-shadow: 0 0.35em, 0 0.7em;
+}
+.ol-control.ol-legend-tidop button:first-child:after {
+  top: .27em;
+  left: .55em;
+  height: .15em;
+  width: .6em;
+}
+
+ul.ol-legend-tidop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ol-control.ol-legend-tidop.ol-empty ul,
+.ol-control.ol-legend-tidop.ol-collapsed ul {
+  display: none;
+}
+.ol-control.ol-legend-tidop.ol-uncollapsible ul {
+  display: block;
+}
+ul.ol-legend-tidop li.ol-title {
+  text-align: center;
+  font-weight: bold;
+}
+ul.ol-legend-tidop li.ol-title > div:first-child {
+  width: 0!important;
+}
+ul.ol-legend-tidop li {
+  overflow: hidden;
+  padding: 0;
+  white-space: nowrap;
+}
+ul.ol-legend-tidop li div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.ol-control.ol-legend-tidop .ol-legend-tidop {
+  display: inline-block;
+}
+.ol-control.ol-legend-tidop.ol-empty .ol-legend-tidop,
+.ol-control.ol-legend-tidop.ol-collapsed .ol-legend-tidop {
+  display: none;
+}
+.ol-control.ol-legend-tidop.ol-empty button {
+  opacity: .4;
+}
 .ol-control.ol-mapzone {
   position: absolute;
   right: 0.5em;
@@ -4115,6 +4340,94 @@ ul.ol-legend li div {
   display: none;
 }
 .ol-mapzone > div p {
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  /* background: rgba(255,255,255,.5); */
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  width: 160%;
+  overflow: hidden;
+  font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
+  -webkit-transform: scaleX(.625);
+          transform: scaleX(.625);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  cursor: default;
+}
+
+.ol-control.ol-mapzone-tidop {
+  position: absolute;
+  right: 0.5em;
+  text-align: left;
+  top: .5em;
+  max-height: calc(100% - 6em);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ol-control.ol-mapzone-tidop.ol-collapsed {
+  top: 3em;
+}
+
+.ol-control.ol-mapzone-tidop button {
+  position: relative;
+  float: right;
+  margin-top: 2.5em;
+}
+.ol-touch .ol-control.ol-mapzone-tidop button {
+  margin-top: 1.67em;
+}
+.ol-control.ol-mapzone-tidop.ol-collapsed button {
+  margin-top: 0;
+}
+
+.ol-control.ol-mapzone-tidop button i {
+  border: .1em solid currentColor;
+  border-radius: 50%;
+  width: .9em;
+  height: .9em; 
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.ol-control.ol-mapzone-tidop button i:before {
+  content: "";
+  background-color: currentColor;
+  width: 0.4em;
+  height: .4em;
+  position: absolute;
+  left: .5em;
+  top: 0.3em;
+  border-radius: 50%;
+  -webkit-box-shadow: .05em .3em 0 -.051em currentColor,
+  	-.05em -.35em 0 -.1em currentColor,
+  	-.5em -.35em 0 0em currentColor,
+  	-.65em .1em 0 -.03em currentColor,
+  	-.65em -.05em 0 -.05em currentColor;
+          box-shadow: .05em .3em 0 -.051em currentColor,
+  	-.05em -.35em 0 -.1em currentColor,
+  	-.5em -.35em 0 0em currentColor,
+  	-.65em .1em 0 -.03em currentColor,
+  	-.65em -.05em 0 -.05em currentColor
+}
+
+.ol-mapzone-tidop > div {
+  position: relative;
+  display: inline-block;
+  width: 5em;
+  height: 5em;
+  margin: 0 .2em 0 0;
+}
+.ol-control.ol-mapzone-tidop.ol-collapsed > div {
+  display: none;
+}
+.ol-mapzone-tidop > div p {
   margin: 0;
   position: absolute;
   bottom: 0;

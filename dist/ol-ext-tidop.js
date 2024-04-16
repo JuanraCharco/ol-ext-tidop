@@ -1,7 +1,7 @@
 /**
  * ol-ext-tidop - A set of cool extensions for OpenLayers (ol) in node modules structure
  * @description ol3,openlayers,popup,menu,symbol,renderer,filter,canvas,interaction,split,statistic,charts,pie,LayerSwitcher,toolbar,animation
- * @version v0.0.27
+ * @version v0.0.28
  * @author 
  * @see https://github.com/Viglino/ol-ext#,
  * @license BSD-3-Clause
@@ -14309,6 +14309,69 @@ ol.control.LayerSwitcherImage = class olcontrolLayerSwitcherImage extends ol.con
   overflow() { }
 }
 
+/*	Copyright (c) 2016 Jean-Marc VIGLINO, 
+	released under the CeCILL-B license (French BSD license)
+	(http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt).
+*/
+/**
+ * @classdesc OpenLayers Layer Switcher Control.
+ * @require layer.getPreview
+ *
+ * @constructor
+ * @extends {ol.control.LayerSwitcher}
+ * @param {Object=} options Control options.
+ */
+ol.control.LayerSwitcherImageTidop = class olcontrolLayerSwitcherImageTidop extends ol.control.LayerSwitcherTidop {
+  constructor(options) {
+    options = options || {};
+    options.switcherClass = ((options.switcherClass || '') +  ' ol-layerswitcher-image-tidop').trim();
+    options.mouseover = (options.mouseover !== false);
+    super(options);
+  }
+  /** Render a list of layer
+   * @param {elt} element to render
+   * @layers {Array{ol.layer}} list of layer to show
+   * @api stable
+   */
+  drawList(ul, layers) {
+    var self = this;
+    var setVisibility = function (e) {
+      e.preventDefault();
+      var l = self._getLayerForLI(this);
+      self.switchLayerVisibility(l, layers);
+      if (e.type == "touchstart")
+        self.element.classList.add("ol-collapsed");
+    };
+    ol.ext.element.setStyle(ul, { height: 'auto' });
+    layers.forEach(function (layer) {
+      if (self.displayInLayerSwitcher(layer)) {
+        var preview = layer.getPreview ? layer.getPreview() : ["none"];
+        var d = ol.ext.element.create('LI', {
+          className: 'ol-imgcontainer' + (layer.getVisible() ? ' ol-visible' : ''),
+          on: { 'touchstart click': setVisibility },
+          parent: ul
+        });
+        self._setLayerForLI(d, layer);
+        preview.forEach(function (img) {
+          ol.ext.element.create('IMG', {
+            src: img,
+            parent: d
+          });
+        });
+        ol.ext.element.create('p', {
+          html: layer.get("title") || layer.get("name"),
+          parent: d
+        });
+        if (self.testLayerVisibility(layer))
+          d.classList.add('ol-layer-hidden');
+      }
+    });
+  }
+  /** Disable overflow
+  */
+  overflow() { }
+}
+
 // eslint-disable-next-line no-unused-vars
 /** Create a legend for styles
  * @constructor
@@ -14335,6 +14398,175 @@ ol.control.Legend = class olcontrolLegend extends ol.control.CanvasBase {
       element.className = options.className || 'ol-legend';
     } else {
       element.className = (options.className || 'ol-legend')
+        + ' ol-unselectable ol-control'
+        + (options.collapsible === false ? ' ol-uncollapsible' : ' ol-collapsed');
+      // Show on click
+      var button = document.createElement('button');
+      button.setAttribute('type', 'button');
+      button.addEventListener('click', function () {
+        this.toggle();
+      }.bind(this));
+      element.appendChild(button);
+      // Hide on click
+      button = document.createElement('button');
+      button.setAttribute('type', 'button');
+      button.className = 'ol-closebox';
+      button.addEventListener('click', function () {
+        this.toggle();
+      }.bind(this));
+      element.appendChild(button);
+    }
+    // The legend
+    this._legend = options.legend;
+    this._legend.getCanvas().className = 'ol-legendImg';
+    // Legend element
+    element.appendChild(this._legend.getCanvas());
+    element.appendChild(this._legend.getListElement());
+    if (options.collapsible !== false && options.collapsed === false) {
+      this.show();
+    }
+    // Select item on legend
+    this._legend.on('select', function (e) {
+      this.dispatchEvent(e);
+    }.bind(this));
+    // Refresh legend
+    this._legend.on('refresh', function () {
+      if (this._onCanvas && this.getMap()) {
+        try { this.getMap().renderSync(); } catch (e) { /* ok */ }
+      }
+    }.bind(this));
+    // Legend has items
+    this._legend.on('items', function (e) {
+      if (e.nb) {
+        this.element.classList.remove('ol-empty');
+        this.element.title = options.title || 'legend';
+      } else {
+        this.element.classList.add('ol-empty');
+        this.element.title = options.emptyTitle || 'no legend';
+      }
+      this.dispatchEvent(e)
+    }.bind(this));
+  }
+  /** Get the legend associated with the control
+   * @returns {ol.legend.Legend}
+   */
+  getLegend() {
+    return this._legend;
+  }
+  /** Draw control on canvas
+   * @param {boolean} b draw on canvas.
+   */
+  setCanvas(b) {
+    this._onCanvas = b;
+    this.element.style.visibility = b ? "hidden" : "visible";
+    if (this.getMap()) {
+      try { this.getMap().renderSync(); } catch (e) { /* ok */ }
+    }
+  }
+  /** Is control on canvas
+   * @returns {boolean}
+   */
+  onCanvas() {
+    return !!this._onCanvas;
+  }
+  /** Draw legend on canvas
+   * @private
+   */
+  _draw(e) {
+    if (this._onCanvas && !this.element.classList.contains('ol-collapsed')) {
+      var canvas = this._legend.getCanvas();
+      var ctx = this.getContext(e);
+      var h = ctx.canvas.height - canvas.height;
+      ctx.save();
+      ctx.rect(0, h, canvas.width, canvas.height);
+      var col = '#fff';
+      if (this._legend.getTextStyle().getBackgroundFill()) {
+        col = ol.color.asString(this._legend.getTextStyle().getBackgroundFill().getColor());
+      }
+      ctx.fillStyle = ctx.strokeStyle = col;
+      ctx.lineWidth = 10;
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+      ctx.clearRect(0, h, canvas.width, canvas.height);
+      ctx.fill();
+      ctx.drawImage(canvas, 0, h);
+      ctx.restore();
+    }
+  }
+  /** Show control
+   */
+  show() {
+    if (this.element.classList.contains('ol-collapsed')) {
+      this.element.classList.remove('ol-collapsed');
+      this.dispatchEvent({ type: 'change:collapse', collapsed: false });
+      if (this.getMap()) {
+        try { this.getMap().renderSync(); } catch (e) { /* ok */ }
+      }
+    }
+  }
+  /** Hide control
+   */
+  hide() {
+    if (!this.element.classList.contains('ol-collapsed')) {
+      this.element.classList.add('ol-collapsed');
+      this.dispatchEvent({ type: 'change:collapse', collapsed: true });
+      if (this.getMap()) {
+        try { this.getMap().renderSync(); } catch (e) { /* ok */ }
+      }
+    }
+  }
+  /** Show/hide control
+   * @returns {boolean}
+   */
+  collapse(b) {
+    if (b === false)
+      this.show();
+    else
+      this.hide();
+  }
+  /** Is control collapsed
+   * @returns {boolean}
+   */
+  isCollapsed() {
+    return (this.element.classList.contains('ol-collapsed'));
+  }
+  /** Toggle control
+   */
+  toggle() {
+    this.element.classList.toggle('ol-collapsed');
+    this.dispatchEvent({ type: 'change:collapse', collapsed: this.element.classList.contains('ol-collapsed') });
+    if (this.getMap()) {
+      try { this.getMap().renderSync(); } catch (e) { /* ok */ }
+    }
+  }
+}
+
+// eslint-disable-next-line no-unused-vars
+/** Create a legend for styles
+ * @constructor
+ * @extends {ol.control.CanvasBase}
+ * @fires select
+ * @param {*} options
+ *  @param {String} options.className class of the control
+ *  @param {String} [options.title="legend"] control title
+ *  @param {String} [options.emptyTitle="no legend"] control title when legend is empty
+ *  @param {ol.legend.Legend} options.legend
+ *  @param {boolean | undefined} options.collapsed Specify if legend should be collapsed at startup. Default is true.
+ *  @param {boolean | undefined} options.collapsible Specify if legend can be collapsed, default true.
+ *  @param {Element | string | undefined} options.target Specify a target if you want the control to be rendered outside of the map's viewport.
+ */
+ol.control.LegendTidop = class olcontrolLegendTidop extends ol.control.CanvasBase {
+  constructor(options) {
+    options = options || {};
+    var element = document.createElement('div');
+    super({
+      element: element,
+      target: options.target
+    });
+    if (options.target) {
+      element.className = options.className || 'ol-legend-tidop';
+    } else {
+      element.className = (options.className || 'ol-legend-tidop')
         + ' ol-unselectable ol-control'
         + (options.collapsible === false ? ' ol-uncollapsible' : ' ol-collapsed');
       // Show on click
@@ -14691,6 +14923,220 @@ ol.control.MapZone.zones.DOMTOM = [{
   title: 'Métropole',
   extent: [ -5.318421740712579, 41.16082274292913, 9.73284186155716, 51.21957336557702 ]
 }].concat(ol.control.MapZone.zones.DOM, ol.control.MapZone.zones.TOM);
+
+/*	Copyright (c) 2019 Jean-Marc VIGLINO,
+  released under the CeCILL-B license (French BSD license)
+  (http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt).
+*/
+/** A control to jump from one zone to another.
+ * @constructor
+ * @fires select
+ * @extends {ol.control.Control}
+ * @param {Object=} options Control options.
+ *	@param {string} options.className class name
+ *  @param {Array<any>} options.zone an array of zone: { name, extent (in EPSG:4326) }
+ *	@param {ol.layer.Layer|function} options.layer layer to display in the control or a function that takes a zone and returns a layer to add to the control
+ *	@param {ol.ProjectionLike} options.projection projection of the control, Default is EPSG:3857 (Spherical Mercator).
+ *  @param {bolean} options.centerOnClick center on click when a zone is clicked (or listen to 'select' event to do something), default true
+ */
+ol.control.MapZoneTidop = class olcontrolMapZoneTidop extends ol.control.Control {
+  constructor(options) {
+    options = options || {}
+    var element = element = ol.ext.element.create('DIV', {
+      className: options.className || 'ol-mapzone-tidop'
+    })
+    super({
+      element: element,
+      target: options.target
+    })
+    if (!options.target) {
+      ['ol-unselectable', 'ol-control', 'ol-collapsed'].forEach(function(c) {
+        element.classList.add(c)
+      })
+      var bt = ol.ext.element.create('BUTTON', {
+        type: 'button',
+        on: {
+          'click': function () {
+            element.classList.toggle("ol-collapsed")
+            maps.forEach(function (m) {
+              m.updateSize()
+            })
+          }.bind(this)
+        },
+        parent: element
+      })
+      ol.ext.element.create('I', {
+        parent: bt
+      })
+    }
+    this.set('centerOnClick', options.centerOnClick)
+    // Create maps
+    var maps = this._maps = []
+    this._projection = options.projection
+    this._layer = options.layer
+    options.zones.forEach(this.addZone.bind(this))
+    // Refresh the maps
+    setTimeout(function () {
+      maps.forEach(function (m) {
+        m.updateSize()
+      })
+    })
+  }
+  /** Collapse the control
+   * @param {boolean} b
+   */
+  setCollapsed(b) {
+    if (b) {
+      this.element.classList.remove('ol-collapsed')
+      // Force map rendering
+      this.getMaps().forEach(function (m) {
+        m.updateSize()
+      })
+    } else {
+      this.element.classList.add('ol-collapsed')
+    }
+  }
+  /** Show the control
+   * @param {boolean} b
+   */
+  setVisible(b) {
+    this.setCollapsed(!b);
+  }
+  /** Get control collapsed
+   * @return {boolean}
+   */
+  getCollapsed() {
+    return this.element.classList.contains('ol-collapsed')
+  }
+  /** Get associated maps
+   * @return {ol.Map}
+   */
+  getMaps() {
+    return this._maps
+  }
+  /** Get nb zone */
+  getLength() {
+    return this._maps.length
+  }
+  /** Add a new zone to the control
+   * @param {Object} z
+   *  @param {string} title
+   *  @param {ol.extent} extent if map is not defined
+   *  @param {ol.Map} map if map is defined use the map extent
+   *  @param {ol.layer.Layer} [layer] layer of the zone, default use default control layer
+   */
+  addZone(z) {
+    var view = new ol.View({ zoom: 6, center: [0, 0], projection: this._projection })
+    var extent
+    if (z.map) {
+      extent = ol.proj.transformExtent(z.map.getView().calculateExtent(), z.map.getView().getProjection(), view.getProjection())
+    } else {
+      extent = ol.proj.transformExtent(z.extent, 'EPSG:4326', view.getProjection())
+    }
+    // console.log(extent, z.extent)
+    var div = ol.ext.element.create('DIV', {
+      className: 'ol-mapzonezone',
+      parent: this.element,
+      click: function () {
+        // Get index
+        var index = -1
+        this._maps.forEach(function (m, i) {
+          if (m.get('zone') === z) {
+            index = i
+          }
+        })
+        this.dispatchEvent({
+          type: 'select',
+          zone: z,
+          index: index,
+          coordinate: ol.extent.getCenter(extent),
+          extent: extent
+        })
+        if (this.get('centerOnClick') !== false) {
+          this.getMap().getView().fit(extent)
+        }
+        this.setVisible(false)
+      }.bind(this)
+    })
+    var layer
+    if (z.layer) {
+      layer = z.layer
+    } else if (typeof (this._layer) === 'function') {
+      layer = this._layer(z)
+    } else {
+      // Try to clone the layer
+      layer = new this._layer.constructor({
+        source: this._layer.getSource()
+      })
+    }
+    var map = new ol.Map({
+      target: div,
+      view: view,
+      controls: [],
+      interactions: [],
+      layers: [layer]
+    })
+    map.set('zone', z)
+    this._maps.push(map)
+    view.fit(extent)
+    // Name
+    ol.ext.element.create('P', {
+      html: z.title,
+      parent: div
+    })
+  }
+  /** Remove a zone from the control
+   * @param {number} index
+   */
+  removeZone(index) {
+    var z = this.element.querySelectorAll('.ol-mapzonezone')[index]
+    if (z) {
+      z.remove()
+      this._maps.splice(index, 1)
+    }
+  }
+}
+/** Pre-defined zones */
+ol.control.MapZoneTidop.zones = {};
+/** French overseas departments  */
+ol.control.MapZoneTidop.zones.DOM = [{
+  "title": "Guadeloupe",
+  "extent": [ -61.898594315312444, 15.75623038647845, -60.957887532935324, 16.575317670979473 ]
+},{
+  "title": "Guyane",
+  "extent": [ -54.72525931072715, 2.1603763430019, -51.528236062921344, 5.7984307809552575 ]
+},{
+  "title": "Martinique",
+  "extent": [ -61.257556528564756, 14.387506317407514, -60.76934912110432, 14.895067461729951 ]
+},{
+  "title": "Mayotte",
+  "extent": [ 44.959844536967815, -13.01674138212816, 45.35328866510648, -12.65521942207829 ]
+},{
+  "title": "La réunion",
+  "extent": [ 55.17059012967656, -21.407680069231688, 55.88195702001797, -20.85560221637526 ]
+}];
+/** French overseas territories */
+ol.control.MapZoneTidop.zones.TOM = [{
+  "title": "Polynésie Française",
+  "extent": [ 206.23664226630862, -22.189040615809787, 221.85920743981987, -10.835039595040698 ]
+},{
+  "title": "Nouvelle Calédonie",
+  "extent": [ 163.76420580160925, -22.581641092751838, 167.66984709498706, -19.816411635668445 ]
+},{
+  "title": "St-Pierre et Miquelon",
+  "extent": [ -56.453698765748676, 46.74449858188555, -56.0980198121544, 47.14669874229787 ]
+},{
+  "title": "Wallis et Futuna",
+  "extent": [ 181.7588623143665, -14.7341169873267, 183.95612353301715, -13.134720799175085 ]
+},{
+  "title": "St-Martin St-Barthélemy",
+  "extent": [ -63.1726389501678, 17.806097291313506, -62.7606535945649, 18.13267688837938 ]
+}];
+/** French overseas departments and territories */
+ol.control.MapZoneTidop.zones.DOMTOM = [{
+  title: 'Métropole',
+  extent: [ -5.318421740712579, 41.16082274292913, 9.73284186155716, 51.21957336557702 ]
+}].concat(ol.control.MapZoneTidop.zones.DOM, ol.control.MapZoneTidop.zones.TOM);
 
 /*	Copyright (c) 2017 Jean-Marc VIGLINO, 
 	released under the CeCILL-B license (French BSD license)
