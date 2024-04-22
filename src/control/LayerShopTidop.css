@@ -193,3 +193,7 @@
   display: none;
 }
 
+.preview-layer {
+  display: inline-block;
+  max-height: 1.1em;
+}

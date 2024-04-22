@@ -27,6 +27,11 @@
   <script src="https://unpkg.com/elm-pep"></script>
 
   <link rel="stylesheet" href="../style.css" />
+  <style>
+    .fechaColorRojo {
+      color: #f00;
+    }
+  </style>
  </head>
 <body >
 
@@ -95,6 +100,7 @@ tidop: {
       tidop: {
         time: {
           value: '2023-01-01/2023-01-01',
+          valueClass: 'fechaColorRojo',
           lock: true,
           lockClass: 'fa-solid fa-lock',
           unlockClass: 'fa-solid fa-lock-open'
@@ -136,6 +142,7 @@ tidop: {
         })
       },
 
+      preview: '../data/oldmap.jpg'
 
 
     });

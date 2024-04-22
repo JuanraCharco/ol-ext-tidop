@@ -375,6 +375,8 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
       var icon_layer = ''
       if (layer.get('icon'))
         icon_layer = '<i class="' + layer.get('icon') +  ' " style="margin-right: 3px;"></i>'
+      if (layer.get('preview'))
+        icon_layer = '<img class="preview-layer" src="' + layer.get('preview') +  '" style="margin-right: 3px;">'
 
       // Label
       var label = ol_ext_element.create('LABEL', {
@@ -397,10 +399,15 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
         parent: label
       })
 
+      var timeValueClass = ''
+      if (layer.get('tidop') !== undefined && layer.get('tidop') !== null)
+        if (layer.get('tidop').time !== undefined && layer.get('tidop').time !== null)
+          if (layer.get('tidop').time.valueClass !== undefined && layer.get('tidop').time.valueClass !== null)
+            timeValueClass = layer.get('tidop').time.valueClass
 
       if(this.getLayerClass(layer) != 'ol-layer-group')
         var dd = ol_ext_element.create('DIV', {
-          className: 'extra-layer-data' + ' ' + layer.get('id') + '-extra-layer-data',
+          className: 'extra-layer-data' + ' ' + layer.get('id') + '-extra-layer-data ' + timeValueClass,
           //html: 'prueba',
           parent: d
         })

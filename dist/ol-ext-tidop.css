@@ -2269,7 +2269,10 @@ body > .ol-ext-dialog > form {
   display: none;
 }
 
-
+.preview-layer {
+  display: inline-block;
+  max-height: 1.1em;
+}
 .ol-control.ol-layerswitcher {
   position: absolute;
   right: 0.5em;

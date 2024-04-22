@@ -1,7 +1,7 @@
 /**
  * ol-ext-tidop - A set of cool extensions for OpenLayers (ol) in node modules structure
  * @description ol3,openlayers,popup,menu,symbol,renderer,filter,canvas,interaction,split,statistic,charts,pie,LayerSwitcher,toolbar,animation
- * @version v0.0.28
+ * @version v0.0.29
  * @author 
  * @see https://github.com/Viglino/ol-ext#,
  * @license BSD-3-Clause
@@ -14059,6 +14059,8 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
       var icon_layer = ''
       if (layer.get('icon'))
         icon_layer = '<i class="' + layer.get('icon') +  ' " style="margin-right: 3px;"></i>'
+      if (layer.get('preview'))
+        icon_layer = '<img class="preview-layer" src="' + layer.get('preview') +  '" style="margin-right: 3px;">'
       // Label
       var label = ol.ext.element.create('LABEL', {
         title: layer.get('title') || layer.get('name'),
@@ -14079,9 +14081,14 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
         }.bind(this),
         parent: label
       })
+      var timeValueClass = ''
+      if (layer.get('tidop') !== undefined && layer.get('tidop') !== null)
+        if (layer.get('tidop').time !== undefined && layer.get('tidop').time !== null)
+          if (layer.get('tidop').time.valueClass !== undefined && layer.get('tidop').time.valueClass !== null)
+            timeValueClass = layer.get('tidop').time.valueClass
       if(this.getLayerClass(layer) != 'ol-layer-group')
         var dd = ol.ext.element.create('DIV', {
-          className: 'extra-layer-data' + ' ' + layer.get('id') + '-extra-layer-data',
+          className: 'extra-layer-data' + ' ' + layer.get('id') + '-extra-layer-data ' + timeValueClass,
           //html: 'prueba',
           parent: d
         })
