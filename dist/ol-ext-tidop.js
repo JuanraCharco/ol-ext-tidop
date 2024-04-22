@@ -14321,10 +14321,10 @@ ol.control.LayerSwitcherImage = class olcontrolLayerSwitcherImage extends ol.con
  * @extends {ol.control.LayerSwitcher}
  * @param {Object=} options Control options.
  */
-ol.control.LayerSwitcherImageTidop = class olcontrolLayerSwitcherImageTidop extends ol.control.LayerSwitcherTidop {
+ol.control.LayerSwitcherImageBaseTidop = class olcontrolLayerSwitcherImageBaseTidop extends ol.control.LayerSwitcherTidop {
   constructor(options) {
     options = options || {};
-    options.switcherClass = ((options.switcherClass || '') +  ' ol-layerswitcher-image-tidop').trim();
+    options.switcherClass = ((options.switcherClass || '') +  ' ol-layerswitcher-image-base-tidop').trim();
     options.mouseover = (options.mouseover !== false);
     super(options);
   }
@@ -14344,7 +14344,7 @@ ol.control.LayerSwitcherImageTidop = class olcontrolLayerSwitcherImageTidop exte
     };
     ol.ext.element.setStyle(ul, { height: 'auto' });
     layers.forEach(function (layer) {
-      if (self.displayInLayerSwitcher(layer)) {
+      if (self.displayInLayerSwitcher(layer) && layer.get('baseLayer')) {
         var preview = layer.getPreview ? layer.getPreview() : ["none"];
         var d = ol.ext.element.create('LI', {
           className: 'ol-imgcontainer' + (layer.getVisible() ? ' ol-visible' : ''),

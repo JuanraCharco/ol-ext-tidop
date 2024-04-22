@@ -14,10 +14,10 @@ import ol_ext_element from '../util/element.js';
  * @extends {ol_control_LayerSwitcher}
  * @param {Object=} options Control options.
  */
-var ol_control_LayerSwitcherImageTidop = class olcontrolLayerSwitcherImageTidop extends ol_control_LayerSwitcherTidop {
+var ol_control_LayerSwitcherImageBaseTidop = class olcontrolLayerSwitcherImageBaseTidop extends ol_control_LayerSwitcherTidop {
   constructor(options) {
     options = options || {};
-    options.switcherClass = ((options.switcherClass || '') +  ' ol-layerswitcher-image-tidop').trim();
+    options.switcherClass = ((options.switcherClass || '') +  ' ol-layerswitcher-image-base-tidop').trim();
     options.mouseover = (options.mouseover !== false);
 
     super(options);
@@ -42,7 +42,7 @@ var ol_control_LayerSwitcherImageTidop = class olcontrolLayerSwitcherImageTidop 
     ol_ext_element.setStyle(ul, { height: 'auto' });
 
     layers.forEach(function (layer) {
-      if (self.displayInLayerSwitcher(layer)) {
+      if (self.displayInLayerSwitcher(layer) && layer.get('baseLayer')) {
         var preview = layer.getPreview ? layer.getPreview() : ["none"];
         var d = ol_ext_element.create('LI', {
           className: 'ol-imgcontainer' + (layer.getVisible() ? ' ol-visible' : ''),
@@ -71,4 +71,4 @@ var ol_control_LayerSwitcherImageTidop = class olcontrolLayerSwitcherImageTidop 
   overflow() { }
 }
 
-export default ol_control_LayerSwitcherImageTidop
+export default ol_control_LayerSwitcherImageBaseTidop

@@ -1,4 +1,4 @@
-.ol-control.ol-layerswitcher-image-tidop {
+.ol-control.ol-layerswitcher-image-base-tidop {
   position: absolute;
   right: 0.5em;
   text-align: left;
@@ -6,44 +6,44 @@
   transition: all 0.2s ease 0s;
   -webkit-transition: all 0.2s ease 0s;
 }
-.ol-control.ol-layerswitcher-image-tidop.ol-collapsed {
+.ol-control.ol-layerswitcher-image-base-tidop.ol-collapsed {
   top:3em;
   -webkit-transition: none;
   transition: none;
 }
 
-.ol-layerswitcher-image-tidop .panel {
+.ol-layerswitcher-image-base-tidop .panel {
   list-style: none;
   padding: 0.25em;
   margin:0;
   overflow: hidden;
 }
 
-.ol-layerswitcher-image-tidop .panel ul {
+.ol-layerswitcher-image-base-tidop .panel ul {
   list-style: none;
   padding: 0 0 0 20px;
   overflow: hidden;
 }
 
-.ol-layerswitcher-image-tidop.ol-collapsed .panel {
+.ol-layerswitcher-image-base-tidop.ol-collapsed .panel {
   display:none;
 }
-.ol-layerswitcher-image-tidop.ol-forceopen .panel {
+.ol-layerswitcher-image-base-tidop.ol-forceopen .panel {
   display:block;
   clear:both;
 }
 
-.ol-layerswitcher-image-tidop button {
+.ol-layerswitcher-image-base-tidop button {
   float: right;
   display:none;
 }
 
-.ol-layerswitcher-image-tidop.ol-collapsed button {
+.ol-layerswitcher-image-base-tidop.ol-collapsed button {
   display:block;
   position:relative;
 }
 
-.ol-layerswitcher-image-tidop li {
+.ol-layerswitcher-image-base-tidop li {
   border-radius: 4px;
   border: 3px solid transparent;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
@@ -57,27 +57,27 @@
   vertical-align: middle;
   cursor:pointer;
 }
-.ol-layerswitcher-image-tidop li.ol-layer-hidden {
+.ol-layerswitcher-image-base-tidop li.ol-layer-hidden {
   opacity: 0.5;
   border-color:#555;
 }
-.ol-layerswitcher-image-tidop li.ol-header {
+.ol-layerswitcher-image-base-tidop li.ol-header {
   display: none;
 }
 
-.ol-layerswitcher-image-tidop li img {
+.ol-layerswitcher-image-base-tidop li img {
   position:absolute;
   max-width:100%;
 }
-.ol-layerswitcher-image-tidop li.select,
-.ol-layerswitcher-image-tidop li.ol-visible {
+.ol-layerswitcher-image-base-tidop li.select,
+.ol-layerswitcher-image-base-tidop li.ol-visible {
   border: 3px solid red;
 }
 
-.ol-layerswitcher-image-tidop li p {
+.ol-layerswitcher-image-base-tidop li p {
   display:none;
 }
-.ol-layerswitcher-image-tidop li:hover p {
+.ol-layerswitcher-image-base-tidop li:hover p {
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   bottom: 0;
