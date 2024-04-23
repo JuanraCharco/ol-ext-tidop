@@ -1,7 +1,7 @@
 /**
  * ol-ext-tidop - A set of cool extensions for OpenLayers (ol) in node modules structure
  * @description ol3,openlayers,popup,menu,symbol,renderer,filter,canvas,interaction,split,statistic,charts,pie,LayerSwitcher,toolbar,animation
- * @version v0.0.29
+ * @version v0.0.30
  * @author 
  * @see https://github.com/Viglino/ol-ext#,
  * @license BSD-3-Clause
@@ -14342,15 +14342,25 @@ ol.control.LayerSwitcherImageBaseTidop = class olcontrolLayerSwitcherImageBaseTi
    */
   drawList(ul, layers) {
     var self = this;
+    var totalLayers = []
+    layers.forEach(function (layer) {
+      if (layer.getLayers) {
+        layer.getLayers().forEach(function (subLayer) {
+          totalLayers.push(subLayer)
+        });
+      }
+      else
+        totalLayers.push(layer)
+    });
     var setVisibility = function (e) {
       e.preventDefault();
       var l = self._getLayerForLI(this);
-      self.switchLayerVisibility(l, layers);
+      self.switchLayerVisibility(l, totalLayers);
       if (e.type == "touchstart")
         self.element.classList.add("ol-collapsed");
     };
     ol.ext.element.setStyle(ul, { height: 'auto' });
-    layers.forEach(function (layer) {
+    totalLayers.forEach(function (layer) {
       if (self.displayInLayerSwitcher(layer) && layer.get('baseLayer')) {
         var preview = layer.getPreview ? layer.getPreview() : ["none"];
         var d = ol.ext.element.create('LI', {

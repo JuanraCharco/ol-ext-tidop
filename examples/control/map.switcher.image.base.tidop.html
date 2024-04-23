@@ -60,12 +60,6 @@ var stamen = new ol.layer.Tile({
   baseLayer: true,
   source: new ol.source.StadiaMaps({ layer: 'stamen_watercolor' })
 });
-var osm = new ol.layer.Tile({
-  title: "OSM",
-  baseLayer: true,
-  source: new ol.source.OSM(),
-  visible: false
-});
 
 // GeoJSON layer with a preview attribute
 var vectorSource = new ol.source.Vector({
@@ -82,6 +76,37 @@ var vector = new ol.layer.Vector({
   source: vectorSource
 });
 
+var otherGroup = new ol.layer.Group({
+  id: 'otherGroup',
+  title: 'Other group',
+  openInLayerSwitcher: true,
+  layers: [
+    new ol.layer.Tile({
+      id: 'unidadesAdministrativas',
+      title: 'Unidades Administrativas',
+      icon: 'fa fa-globe',
+      source: new ol.source.TileWMS({
+        ratio: 1,
+        url: 'https://www.ign.es/wms-inspire/unidades-administrativas',
+        params: {
+          LAYERS: 'AU.AdministrativeUnit'
+        },
+      }),
+
+
+
+    }),
+
+    osm = new ol.layer.Tile({
+      title: "OSM",
+      baseLayer: true,
+      source: new ol.source.OSM(),
+      visible: false
+    })
+
+  ]
+});
+
 
 // The map
 var map = new ol.Map({
@@ -90,7 +115,7 @@ var map = new ol.Map({
     zoom: 6,
     center: [173664, 6166327]
   }),
-  layers: [stamen, osm, vector]
+  layers: [otherGroup,stamen,  vector]
 });
 
 // Add a new Layerswitcher to the map

@@ -31,17 +31,28 @@ var ol_control_LayerSwitcherImageBaseTidop = class olcontrolLayerSwitcherImageBa
   drawList(ul, layers) {
     var self = this;
 
+    var totalLayers = []
+    layers.forEach(function (layer) {
+      if (layer.getLayers) {
+        layer.getLayers().forEach(function (subLayer) {
+          totalLayers.push(subLayer)
+        });
+      }
+      else
+        totalLayers.push(layer)
+    });
+
     var setVisibility = function (e) {
       e.preventDefault();
       var l = self._getLayerForLI(this);
-      self.switchLayerVisibility(l, layers);
+      self.switchLayerVisibility(l, totalLayers);
       if (e.type == "touchstart")
         self.element.classList.add("ol-collapsed");
     };
 
     ol_ext_element.setStyle(ul, { height: 'auto' });
 
-    layers.forEach(function (layer) {
+    totalLayers.forEach(function (layer) {
       if (self.displayInLayerSwitcher(layer) && layer.get('baseLayer')) {
         var preview = layer.getPreview ? layer.getPreview() : ["none"];
         var d = ol_ext_element.create('LI', {
