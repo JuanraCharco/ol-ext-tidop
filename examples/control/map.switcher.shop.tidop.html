@@ -186,6 +186,13 @@ tidop: {
     });
 
     // Add control inside the map
+    var ctrl_inside = new ol.control.LayerShopTidop({
+      // target: $("#externalContainer").get(0),
+      minibar: true,
+      collapsed: false
+    });
+    map.addControl(ctrl_inside);
+
     var ctrl = new ol.control.LayerShopTidop({
       target: $("#externalContainer").get(0),
       minibar: true,

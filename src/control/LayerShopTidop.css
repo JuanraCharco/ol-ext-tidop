@@ -197,3 +197,147 @@
   display: inline-block;
   max-height: 1.1em;
 }
+
+.ol-control.ol-layer-shop-tidop .ol-bar.ol-top-bar {
+  position: relative;
+  height: unset !important;
+  clear: both;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.5);
+  background-color: #fff;
+  text-align: right;
+  z-index: 10;
+}
+.ol-title-bar-tidop {
+  width: 100% !important;
+  text-align: center;
+}
+.olst-options {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px;
+}
+.olst-button-div {
+  display: inline-block;
+  margin: 0px 5px 8px 5px !important;
+}
+.no-visible {
+  display: none !important;
+}
+
+
+.opacity-tidop {
+  width: 100%;
+  text-align: center;
+  height: 26px;
+  margin: 0px 0px 0px 0px !important;
+  padding: 0px !important;
+}
+.opacity-tidop > input[type=range] {
+  height: 23px;
+  -webkit-appearance: none;
+  margin: 0px 0 5px 0;
+  width: 70%;
+}
+.opacity-tidop > input[type=range]:focus {
+  outline: none;
+}
+.opacity-tidop > input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: rgba(253,201,0,.5);
+  border-radius: 6px;
+  border: 1px solid #000000;
+}
+.opacity-tidop > input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 15px;
+  width: 13px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -6px;
+}
+.opacity-tidop > input[type=range]:focus::-webkit-slider-runnable-track {
+  background: rgba(253,201,0,.5);
+}
+.opacity-tidop > input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: rgba(253,201,0,.5);
+  border-radius: 6px;
+  border: 1px solid #000000;
+}
+.opacity-tidop > input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 15px;
+  width: 13px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+.opacity-tidop > input[type=range]::-ms-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+.opacity-tidop > input[type=range]::-ms-fill-lower {
+  background: rgba(253,201,0,.5);
+  border: 1px solid #000000;
+  border-radius: 12px;
+  box-shadow: 1px 1px 1px #000000;
+}
+.opacity-tidop > input[type=range]::-ms-fill-upper {
+  background: rgba(253,201,0,.5);
+  border: 1px solid #000000;
+  border-radius: 12px;
+  box-shadow: 1px 1px 1px #000000;
+}
+.opacity-tidop > input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 15px;
+  width: 13px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+.opacity-tidop > input[type=range]:focus::-ms-fill-lower {
+  background: rgba(253,201,0,.5);
+}
+.opacity-tidop > input[type=range]:focus::-ms-fill-upper {
+  background: rgba(253,201,0,.5);
+}
+
+/* Filter */
+.filter-tidop {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  border: 2px solid rgba(64,37,81,.5);
+  border-width: 2px 0 2px 0;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.filter-tidop > input[type=text] {
+  height: 26px;
+  outline: none;
+  background-color:transparent;
+  border: 0px solid;
+  margin: 0;
+  width: calc(100% - 5px);
+  padding-left: 5px;
+}

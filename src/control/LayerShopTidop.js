@@ -50,11 +50,13 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
     this.element.classList.add('ol-layer-shop-tidop');
 
     // Control title (selected layer)
+    /*
     var title = this.element.insertBefore(ol_ext_element.create('DIV', { className: 'ol-title-bar' }), this.getPanel());
     this.on('select', function (e) {
       title.innerText = e.layer ? e.layer.get('title') : '';
       this.element.setAttribute('data-layerClass', this.getLayerClass(e.layer));
     }.bind(this));
+    */
 
     // Top/bottom bar
     this._topbar = this.element.insertBefore(ol_ext_element.create('DIV', {
@@ -64,6 +66,38 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
       className: 'ol-bar ol-bottom-bar',
       parent: this.element
     });
+
+    this.titleDiv = ol_ext_element.create('DIV', {
+      className: 'ol-title-bar-tidop text-center',
+      parent: this._topbar
+    })
+    this.on('select', function (e) {
+      this.titleDiv.innerText = e.layer ? e.layer.get('title') : '';
+      this.element.setAttribute('data-layerClass', this.getLayerClass(e.layer));
+      this.selLayer = e.layer;
+    }.bind(this));
+
+    // Opacity
+    this.opacityDiv = ol_ext_element.create('DIV', {
+      className: 'opacity-tidop',
+      parent: this._topbar
+    })
+    this.opacityInput = ol_ext_element.create('INPUT', {
+      type: 'range',
+      min: 0,
+      max: 1,
+      step: 0.01,
+      value: 1,
+      change: function (e) {
+        e.stopPropagation()
+        e.preventDefault()
+        var l = this.getSelection()
+        var op = parseFloat(this.opacityInput.value)
+        l.setOpacity(op)
+        //this.opacitySpan.innerHTML = (op * 100) + '%'
+      }.bind(this),
+      parent: this.opacityDiv
+    })
 
     this.lockDiv = ol_ext_element.create('DIV', {
       className: ' ol-buttom ol-unselectable ol-control-tidop d-none-tidop',
@@ -171,27 +205,7 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
       parent: this.removeButton
     })
 
-    // Opacity
-    this.opacityDiv = ol_ext_element.create('DIV', {
-      className: 'opacity-tidop no-visible',
-      parent: this._topbar
-    })
-    this.opacityInput = ol_ext_element.create('INPUT', {
-      type: 'range',
-      min: 0,
-      max: 1,
-      step: 0.01,
-      value: 1,
-      change: function (e) {
-        e.stopPropagation()
-        e.preventDefault()
-        var l = this.getSelection()
-        var op = parseFloat(this.opacityInput.value)
-        l.setOpacity(op)
-        //this.opacitySpan.innerHTML = (op * 100) + '%'
-      }.bind(this),
-      parent: this.opacityDiv
-    })
+
 
     this._controls = [];
   }

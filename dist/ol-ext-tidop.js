@@ -1,7 +1,7 @@
 /**
  * ol-ext-tidop - A set of cool extensions for OpenLayers (ol) in node modules structure
  * @description ol3,openlayers,popup,menu,symbol,renderer,filter,canvas,interaction,split,statistic,charts,pie,LayerSwitcher,toolbar,animation
- * @version v0.0.30
+ * @version v0.0.31
  * @author 
  * @see https://github.com/Viglino/ol-ext#,
  * @license BSD-3-Clause
@@ -13761,11 +13761,13 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
     super(options);
     this.element.classList.add('ol-layer-shop-tidop');
     // Control title (selected layer)
+    /*
     var title = this.element.insertBefore(ol.ext.element.create('DIV', { className: 'ol-title-bar' }), this.getPanel());
     this.on('select', function (e) {
       title.innerText = e.layer ? e.layer.get('title') : '';
       this.element.setAttribute('data-layerClass', this.getLayerClass(e.layer));
     }.bind(this));
+    */
     // Top/bottom bar
     this._topbar = this.element.insertBefore(ol.ext.element.create('DIV', {
       className: 'ol-bar ol-top-bar toolbar-options'
@@ -13774,6 +13776,36 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
       className: 'ol-bar ol-bottom-bar',
       parent: this.element
     });
+    this.titleDiv = ol.ext.element.create('DIV', {
+      className: 'ol-title-bar-tidop text-center',
+      parent: this._topbar
+    })
+    this.on('select', function (e) {
+      this.titleDiv.innerText = e.layer ? e.layer.get('title') : '';
+      this.element.setAttribute('data-layerClass', this.getLayerClass(e.layer));
+      this.selLayer = e.layer;
+    }.bind(this));
+    // Opacity
+    this.opacityDiv = ol.ext.element.create('DIV', {
+      className: 'opacity-tidop',
+      parent: this._topbar
+    })
+    this.opacityInput = ol.ext.element.create('INPUT', {
+      type: 'range',
+      min: 0,
+      max: 1,
+      step: 0.01,
+      value: 1,
+      change: function (e) {
+        e.stopPropagation()
+        e.preventDefault()
+        var l = this.getSelection()
+        var op = parseFloat(this.opacityInput.value)
+        l.setOpacity(op)
+        //this.opacitySpan.innerHTML = (op * 100) + '%'
+      }.bind(this),
+      parent: this.opacityDiv
+    })
     this.lockDiv = ol.ext.element.create('DIV', {
       className: ' ol-buttom ol-unselectable ol-control-tidop d-none-tidop',
       click: function (e) {
@@ -13871,27 +13903,6 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
     this.removeI = ol.ext.element.create('I', {
       className:'fa-solid fa-trash-alt',
       parent: this.removeButton
-    })
-    // Opacity
-    this.opacityDiv = ol.ext.element.create('DIV', {
-      className: 'opacity-tidop no-visible',
-      parent: this._topbar
-    })
-    this.opacityInput = ol.ext.element.create('INPUT', {
-      type: 'range',
-      min: 0,
-      max: 1,
-      step: 0.01,
-      value: 1,
-      change: function (e) {
-        e.stopPropagation()
-        e.preventDefault()
-        var l = this.getSelection()
-        var op = parseFloat(this.opacityInput.value)
-        l.setOpacity(op)
-        //this.opacitySpan.innerHTML = (op * 100) + '%'
-      }.bind(this),
-      parent: this.opacityDiv
     })
     this._controls = [];
   }
