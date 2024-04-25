@@ -100,7 +100,7 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
     })
 
     this.lockDiv = ol_ext_element.create('DIV', {
-      className: ' ol-buttom ol-unselectable ol-control-tidop d-none-tidop',
+      className: ' ol-button ol-unselectable ol-control-tidop d-none-tidop',
       click: function (e) {
         e.stopPropagation()
         e.preventDefault()
@@ -146,8 +146,8 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
       }.bind(this),
       parent: this._topbar
     })
-    this.lockButton = ol_ext_element.create('BUTTOM', {
-      type: 'buttom',
+    this.lockButton = ol_ext_element.create('BUTTON', {
+      type: 'button',
       parent: this.lockDiv
     })
     this.lockI = ol_ext_element.create('I', {
@@ -156,7 +156,7 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
     })
 
     this.removeDiv = ol_ext_element.create('DIV', {
-      className: ' ol-buttom ol-unselectable ol-control-tidop',
+      className: ' ol-button ol-unselectable ol-control-tidop',
       click: function (e) {
         e.stopPropagation()
         e.preventDefault()
@@ -196,8 +196,8 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
       }.bind(this),
       parent: this._topbar
     })
-    this.removeButton = ol_ext_element.create('BUTTOM', {
-      type: 'buttom',
+    this.removeButton = ol_ext_element.create('BUTTON', {
+      type: 'button',
       parent: this.removeDiv
     })
     this.removeI = ol_ext_element.create('I', {

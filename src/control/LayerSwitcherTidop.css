@@ -32,7 +32,7 @@
   opacity:1;
   cursor: pointer;
   border-top:2px solid transparent;
-  border-bottom:2px solid #369;
+  border-bottom:2px solid #24622f;
   margin:0 2px;
   box-sizing: border-box;
 }
@@ -40,7 +40,7 @@
   top: auto;
   bottom: 0;
   height: 2em;
-  border-top:2px solid #369;
+  border-top:2px solid #24622f;
   border-bottom:2px solid transparent;
 }
 .ol-control.ol-layerswitcher-tidop .ol-switchertopdiv:before,
@@ -62,11 +62,11 @@
   opacity:1;
 }
 .ol-control.ol-layerswitcher-tidop .ol-switchertopdiv:before {
-  border-bottom-color: #369;
+  border-bottom-color: #24622f;
   border-top: 0;
 }
 .ol-control.ol-layerswitcher-tidop .ol-switcherbottomdiv:before {
-  border-top-color: #369;
+  border-top-color: #24622f;
   border-bottom: 0;
 }
 
@@ -114,7 +114,7 @@
   box-sizing: border-box;
 }
 .ol-layerswitcher-tidop .panel li.ol-layer-select {
-  background-color: rgba(0,60,136,.2);
+  background-color: rgba(63,76,54,.2);
   margin: 0 -.5em;
   padding: 0 .5em
 }
@@ -181,7 +181,7 @@
   position: absolute;
   left: 0.1em; top: 0.1em;
   width: 1.2em; height: 1.2em; 
-  border: 2px solid #369;
+  border: 2px solid #24622f;
   background: #fff;
   box-sizing:border-box;
 }
@@ -192,7 +192,7 @@
 }
 
 .ol-layerswitcher-tidop [type="radio"]:checked + label:after {
-  background: #369 none repeat scroll 0 0;
+  background: #24622f none repeat scroll 0 0;
   margin: 0.3em;
   width: 0.6em;
   height: 0.6em;
@@ -202,7 +202,7 @@
   background: transparent;
   border-width: 0 3px 3px 0;
   border-style: solid;
-  border-color: #369;
+  border-color: #24622f;
     width: 0.7em;
     height: 1em;
     -webkit-transform: rotate(45deg);
@@ -280,7 +280,7 @@
   margin:2px;
   line-height: 1em;
     text-align: center;
-    background: #369;
+    background: #24622f;
     vertical-align: middle;
     color: #fff;
 }
@@ -302,7 +302,7 @@
 .ol-layerswitcher-tidop .layerup {
   float: right;
   height:2.5em;
-  background-color: #369;
+  background-color: #24622f;
   opacity: 0.5;
   cursor: move;
   cursor: ns-resize;
@@ -327,7 +327,7 @@
 }
 
 .ol-layerswitcher-tidop .layerInfo {
-  background: #369;
+  background: #24622f;
   border-radius: 100%;
 }
 .ol-layerswitcher-tidop .layerInfo:before {
@@ -344,7 +344,7 @@
 }
 
 .ol-layerswitcher-tidop .layerTrash {
-  background: #369;
+  background: #24622f;
 }
 .ol-layerswitcher-tidop .layerTrash:before {
   color: #fff;
@@ -360,7 +360,7 @@
 }
 
 .ol-layerswitcher-tidop .layerExtent {
-  background: #369;
+  background: #24622f;
 }
 .ol-layerswitcher-tidop .layerExtent:before {
   border-right: 1px solid #fff;
@@ -399,7 +399,7 @@
   margin-top:-2px;
   height:4px;
   width:100%;
-  background:#369;
+  background:#24622f;
 }
 .ol-layerswitcher-tidop .expend-layers:after {
   content:"";
@@ -409,36 +409,36 @@
   margin-left:-2px;
   width:4px;
   height:100%;
-  background:#369;
+  background:#24622f;
 }
 /*
 .ol-layerswitcher-tidop .collapse-layers:before {
   content:"";
   position:absolute;
-  border:0.5em solid #369;
-  border-color: #369 transparent transparent;
+  border:0.5em solid #24622f;
+  border-color: #24622f transparent transparent;
   margin-top:0.25em;
 }
 .ol-layerswitcher-tidop .expend-layers:before {
   content:"";
   position:absolute;
-  border:0.5em solid #369;
-  border-color: transparent transparent transparent #369 ;
+  border:0.5em solid #24622f;
+  border-color: transparent transparent transparent #24622f ;
   margin-left:0.25em;
 }
 */
 
 .ol-layerswitcher-tidop .layerswitcher-opacity {
   position:relative;
-  border: 1px solid #369;
+  border: 1px solid #24622f;
   height: 3px;
   width: 120px;
   margin:5px 1em 10px 7px;
   box-sizing: border-box;
   border-radius: 3px;
   background: #69c;
-  background: -webkit-linear-gradient(left, rgba(0,60,136,0), rgba(0,60,136,0.6));
-  background: linear-gradient(to right, rgba(0,60,136,0), rgba(0,60,136,0.6));
+  background: -webkit-linear-gradient(left, rgba(63,76,54,0), rgba(63,76,54,0.6));
+  background: linear-gradient(to right, rgba(63,76,54,0), rgba(63,76,54,0.6));
   cursor: pointer;
   box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
@@ -450,7 +450,7 @@
   height: 20px;
   top: 50%;
   left: 50%;
-  background: rgba(0,60,136,0.5);
+  background: rgba(63,76,54,0.5);
   border-radius: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -484,7 +484,7 @@
   width: 120px;
 }
 .ol-layerswitcher-tidop .layerswitcher-progress div {
-  background-color: #369;
+  background-color: #24622f;
   height:2px;
   display:block;
   width:0;

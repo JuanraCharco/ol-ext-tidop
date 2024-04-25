@@ -1,7 +1,7 @@
 /**
  * ol-ext-tidop - A set of cool extensions for OpenLayers (ol) in node modules structure
  * @description ol3,openlayers,popup,menu,symbol,renderer,filter,canvas,interaction,split,statistic,charts,pie,LayerSwitcher,toolbar,animation
- * @version v0.0.31
+ * @version v0.0.38
  * @author 
  * @see https://github.com/Viglino/ol-ext#,
  * @license BSD-3-Clause
@@ -13807,7 +13807,7 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
       parent: this.opacityDiv
     })
     this.lockDiv = ol.ext.element.create('DIV', {
-      className: ' ol-buttom ol-unselectable ol-control-tidop d-none-tidop',
+      className: ' ol-button ol-unselectable ol-control-tidop d-none-tidop',
       click: function (e) {
         e.stopPropagation()
         e.preventDefault()
@@ -13851,8 +13851,8 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
       }.bind(this),
       parent: this._topbar
     })
-    this.lockButton = ol.ext.element.create('BUTTOM', {
-      type: 'buttom',
+    this.lockButton = ol.ext.element.create('BUTTON', {
+      type: 'button',
       parent: this.lockDiv
     })
     this.lockI = ol.ext.element.create('I', {
@@ -13860,7 +13860,7 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
       parent: this.lockButton
     })
     this.removeDiv = ol.ext.element.create('DIV', {
-      className: ' ol-buttom ol-unselectable ol-control-tidop',
+      className: ' ol-button ol-unselectable ol-control-tidop',
       click: function (e) {
         e.stopPropagation()
         e.preventDefault()
@@ -13896,8 +13896,8 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
       }.bind(this),
       parent: this._topbar
     })
-    this.removeButton = ol.ext.element.create('BUTTOM', {
-      type: 'buttom',
+    this.removeButton = ol.ext.element.create('BUTTON', {
+      type: 'button',
       parent: this.removeDiv
     })
     this.removeI = ol.ext.element.create('I', {

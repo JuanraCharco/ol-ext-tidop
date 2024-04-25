@@ -2079,8 +2079,8 @@ body > .ol-ext-dialog > form {
 }
 .ol-control.ol-layerswitcher-tidop.ol-layer-shop-tidop .panel-container {
   overflow-y: scroll;
-  max-height: calc(100% - 6.5em);
-  border: 2px solid #369;
+  max-height: calc(100% - 17em);
+  border: 2px solid #24622f;
   border-width: 2px 0;
   padding: 0;
 }
@@ -2112,10 +2112,10 @@ body > .ol-ext-dialog > form {
           box-sizing: border-box;
   border-radius: 3px;
   background-color: transparent;
-  color: rgba(0,60,136,1);
+  color: rgba(63,76,54,1);
 }
 .ol-layerswitcher-tidop.ol-layer-shop-tidop .layerup:hover {
-  background-color: rgba(0,60,136,.3);
+  background-color: rgba(63,76,54,.3);
 }
 .ol-layerswitcher-tidop.ol-layer-shop-tidop .layerup:before {
   top: 50%;
@@ -2189,9 +2189,9 @@ body > .ol-ext-dialog > form {
 }
 .ol-control.ol-layer-shop-tidop .ol-bar > * {
   font-size: .9em;
-  display: inline-block;
+  /*display: inline-block;*/
   vertical-align: middle;
-  margin-top: .25em;
+  margin-top: 0.25em;
   background-color: transparent;
 }
 
@@ -2207,10 +2207,10 @@ body > .ol-ext-dialog > form {
 }
 .ol-layer-shop-tidop .ol-bar button {
   background-color: #fff;
-  color: rgba(0,60,136,1)
+  color: rgba(63,76,54,1)
 }
 .ol-layer-shop-tidop .ol-bar button:hover {
-  background-color: rgba(0,60,136,.2);
+  background-color: rgba(63,76,54,.2);
 }
 
 /* Touch device */
@@ -2241,9 +2241,9 @@ body > .ol-ext-dialog > form {
 
 .extra-layer-data {
   position: relative;
-  left: 1.7em;
+  left: 1.5em;
   padding-top: 0px;
-  margin-top: -7px;
+  margin-top: -3px;
   margin-bottom: 5px;
   display: block;
   font-size: 0.9em;
@@ -2251,13 +2251,14 @@ body > .ol-ext-dialog > form {
 .toolbar-options {
   width: 100%;
   display: inline-block;
-  padding-bottom: 1em;
-  text-align: center;
+  padding-bottom: 0.5em;
+  text-align: center !important;
 }
-.ol-title-bar {
+.ol-title-bar-tidop {
   width: 100%;
   text-align: center;
-  padding-bottom: 0.5em;
+  margin-bottom: 0.25em;
+  padding-top: 0.5em;
 }
 .ol-control-tidop {
   position: relative;
@@ -2266,7 +2267,7 @@ body > .ol-ext-dialog > form {
   margin-right: 5px;
 }
 .d-none-tidop {
-  display: none;
+  display: none !important;
 }
 
 .preview-layer {
@@ -2325,7 +2326,7 @@ body > .ol-ext-dialog > form {
   animate: 0.2s;
   -webkit-box-shadow: 1px 1px 1px #000000;
           box-shadow: 1px 1px 1px #000000;
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
   border-radius: 6px;
   border: 1px solid #000000;
 }
@@ -2342,7 +2343,7 @@ body > .ol-ext-dialog > form {
   margin-top: -6px;
 }
 .opacity-tidop > input[type=range]:focus::-webkit-slider-runnable-track {
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
 }
 .opacity-tidop > input[type=range]::-moz-range-track {
   width: 100%;
@@ -2350,7 +2351,7 @@ body > .ol-ext-dialog > form {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000;
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
   border-radius: 6px;
   border: 1px solid #000000;
 }
@@ -2373,13 +2374,13 @@ body > .ol-ext-dialog > form {
   color: transparent;
 }
 .opacity-tidop > input[type=range]::-ms-fill-lower {
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
   border: 1px solid #000000;
   border-radius: 12px;
   box-shadow: 1px 1px 1px #000000;
 }
 .opacity-tidop > input[type=range]::-ms-fill-upper {
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
   border: 1px solid #000000;
   border-radius: 12px;
   box-shadow: 1px 1px 1px #000000;
@@ -2395,10 +2396,10 @@ body > .ol-ext-dialog > form {
   cursor: pointer;
 }
 .opacity-tidop > input[type=range]:focus::-ms-fill-lower {
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
 }
 .opacity-tidop > input[type=range]:focus::-ms-fill-upper {
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
 }
 
 /* Filter */
@@ -3694,7 +3695,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   opacity:1;
   cursor: pointer;
   border-top:2px solid transparent;
-  border-bottom:2px solid #369;
+  border-bottom:2px solid #24622f;
   margin:0 2px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -3703,7 +3704,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   top: auto;
   bottom: 0;
   height: 2em;
-  border-top:2px solid #369;
+  border-top:2px solid #24622f;
   border-bottom:2px solid transparent;
 }
 .ol-control.ol-layerswitcher-tidop .ol-switchertopdiv:before,
@@ -3725,11 +3726,11 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   opacity:1;
 }
 .ol-control.ol-layerswitcher-tidop .ol-switchertopdiv:before {
-  border-bottom-color: #369;
+  border-bottom-color: #24622f;
   border-top: 0;
 }
 .ol-control.ol-layerswitcher-tidop .ol-switcherbottomdiv:before {
-  border-top-color: #369;
+  border-top-color: #24622f;
   border-bottom: 0;
 }
 
@@ -3781,7 +3782,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
           box-sizing: border-box;
 }
 .ol-layerswitcher-tidop .panel li.ol-layer-select {
-  background-color: rgba(0,60,136,.2);
+  background-color: rgba(63,76,54,.2);
   margin: 0 -.5em;
   padding: 0 .5em
 }
@@ -3850,7 +3851,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   position: absolute;
   left: 0.1em; top: 0.1em;
   width: 1.2em; height: 1.2em; 
-  border: 2px solid #369;
+  border: 2px solid #24622f;
   background: #fff;
   -webkit-box-sizing:border-box;
           box-sizing:border-box;
@@ -3862,7 +3863,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
 }
 
 .ol-layerswitcher-tidop [type="radio"]:checked + label:after {
-  background: #369 none repeat scroll 0 0;
+  background: #24622f none repeat scroll 0 0;
   margin: 0.3em;
   width: 0.6em;
   height: 0.6em;
@@ -3872,7 +3873,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   background: transparent;
   border-width: 0 3px 3px 0;
   border-style: solid;
-  border-color: #369;
+  border-color: #24622f;
     width: 0.7em;
     height: 1em;
     -webkit-transform: rotate(45deg);
@@ -3947,7 +3948,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   margin:2px;
   line-height: 1em;
     text-align: center;
-    background: #369;
+    background: #24622f;
     vertical-align: middle;
     color: #fff;
 }
@@ -3969,7 +3970,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
 .ol-layerswitcher-tidop .layerup {
   float: right;
   height:2.5em;
-  background-color: #369;
+  background-color: #24622f;
   opacity: 0.5;
   cursor: move;
   cursor: ns-resize;
@@ -3994,7 +3995,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
 }
 
 .ol-layerswitcher-tidop .layerInfo {
-  background: #369;
+  background: #24622f;
   border-radius: 100%;
 }
 .ol-layerswitcher-tidop .layerInfo:before {
@@ -4011,7 +4012,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
 }
 
 .ol-layerswitcher-tidop .layerTrash {
-  background: #369;
+  background: #24622f;
 }
 .ol-layerswitcher-tidop .layerTrash:before {
   color: #fff;
@@ -4027,7 +4028,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
 }
 
 .ol-layerswitcher-tidop .layerExtent {
-  background: #369;
+  background: #24622f;
 }
 .ol-layerswitcher-tidop .layerExtent:before {
   border-right: 1px solid #fff;
@@ -4066,7 +4067,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   margin-top:-2px;
   height:4px;
   width:100%;
-  background:#369;
+  background:#24622f;
 }
 .ol-layerswitcher-tidop .expend-layers:after {
   content:"";
@@ -4076,28 +4077,28 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   margin-left:-2px;
   width:4px;
   height:100%;
-  background:#369;
+  background:#24622f;
 }
 /*
 .ol-layerswitcher-tidop .collapse-layers:before {
   content:"";
   position:absolute;
-  border:0.5em solid #369;
-  border-color: #369 transparent transparent;
+  border:0.5em solid #24622f;
+  border-color: #24622f transparent transparent;
   margin-top:0.25em;
 }
 .ol-layerswitcher-tidop .expend-layers:before {
   content:"";
   position:absolute;
-  border:0.5em solid #369;
-  border-color: transparent transparent transparent #369 ;
+  border:0.5em solid #24622f;
+  border-color: transparent transparent transparent #24622f ;
   margin-left:0.25em;
 }
 */
 
 .ol-layerswitcher-tidop .layerswitcher-opacity {
   position:relative;
-  border: 1px solid #369;
+  border: 1px solid #24622f;
   height: 3px;
   width: 120px;
   margin:5px 1em 10px 7px;
@@ -4105,8 +4106,8 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
           box-sizing: border-box;
   border-radius: 3px;
   background: #69c;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(0,60,136,0)), to(rgba(0,60,136,0.6)));
-  background: linear-gradient(to right, rgba(0,60,136,0), rgba(0,60,136,0.6));
+  background: -webkit-gradient(linear, left top, right top, from(rgba(63,76,54,0)), to(rgba(63,76,54,0.6)));
+  background: linear-gradient(to right, rgba(63,76,54,0), rgba(63,76,54,0.6));
   cursor: pointer;
   -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
           box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
@@ -4119,7 +4120,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   height: 20px;
   top: 50%;
   left: 50%;
-  background: rgba(0,60,136,0.5);
+  background: rgba(63,76,54,0.5);
   border-radius: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -4153,7 +4154,7 @@ input.ol-visibility.form-check-input.h-15px.w-15px {
   width: 120px;
 }
 .ol-layerswitcher-tidop .layerswitcher-progress div {
-  background-color: #369;
+  background-color: #24622f;
   height:2px;
   display:block;
   width:0;

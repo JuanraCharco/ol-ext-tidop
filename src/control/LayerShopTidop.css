@@ -16,8 +16,8 @@
 }
 .ol-control.ol-layerswitcher-tidop.ol-layer-shop-tidop .panel-container {
   overflow-y: scroll;
-  max-height: calc(100% - 6.5em);
-  border: 2px solid #369;
+  max-height: calc(100% - 17em);
+  border: 2px solid #24622f;
   border-width: 2px 0;
   padding: 0;
 }
@@ -47,10 +47,10 @@
   box-sizing: border-box;
   border-radius: 3px;
   background-color: transparent;
-  color: rgba(0,60,136,1);
+  color: rgba(63,76,54,1);
 }
 .ol-layerswitcher-tidop.ol-layer-shop-tidop .layerup:hover {
-  background-color: rgba(0,60,136,.3);
+  background-color: rgba(63,76,54,.3);
 }
 .ol-layerswitcher-tidop.ol-layer-shop-tidop .layerup:before {
   top: 50%;
@@ -113,9 +113,9 @@
 }
 .ol-control.ol-layer-shop-tidop .ol-bar > * {
   font-size: .9em;
-  display: inline-block;
+  /*display: inline-block;*/
   vertical-align: middle;
-  margin-top: .25em;
+  margin-top: 0.25em;
   background-color: transparent;
 }
 
@@ -131,10 +131,10 @@
 }
 .ol-layer-shop-tidop .ol-bar button {
   background-color: #fff;
-  color: rgba(0,60,136,1)
+  color: rgba(63,76,54,1)
 }
 .ol-layer-shop-tidop .ol-bar button:hover {
-  background-color: rgba(0,60,136,.2);
+  background-color: rgba(63,76,54,.2);
 }
 
 /* Touch device */
@@ -165,9 +165,9 @@
 
 .extra-layer-data {
   position: relative;
-  left: 1.7em;
+  left: 1.5em;
   padding-top: 0px;
-  margin-top: -7px;
+  margin-top: -3px;
   margin-bottom: 5px;
   display: block;
   font-size: 0.9em;
@@ -175,13 +175,14 @@
 .toolbar-options {
   width: 100%;
   display: inline-block;
-  padding-bottom: 1em;
-  text-align: center;
+  padding-bottom: 0.5em;
+  text-align: center !important;
 }
-.ol-title-bar {
+.ol-title-bar-tidop {
   width: 100%;
   text-align: center;
-  padding-bottom: 0.5em;
+  margin-bottom: 0.25em;
+  padding-top: 0.5em;
 }
 .ol-control-tidop {
   position: relative;
@@ -190,7 +191,7 @@
   margin-right: 5px;
 }
 .d-none-tidop {
-  display: none;
+  display: none !important;
 }
 
 .preview-layer {
@@ -247,7 +248,7 @@
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000;
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
   border-radius: 6px;
   border: 1px solid #000000;
 }
@@ -263,7 +264,7 @@
   margin-top: -6px;
 }
 .opacity-tidop > input[type=range]:focus::-webkit-slider-runnable-track {
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
 }
 .opacity-tidop > input[type=range]::-moz-range-track {
   width: 100%;
@@ -271,7 +272,7 @@
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000;
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
   border-radius: 6px;
   border: 1px solid #000000;
 }
@@ -294,13 +295,13 @@
   color: transparent;
 }
 .opacity-tidop > input[type=range]::-ms-fill-lower {
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
   border: 1px solid #000000;
   border-radius: 12px;
   box-shadow: 1px 1px 1px #000000;
 }
 .opacity-tidop > input[type=range]::-ms-fill-upper {
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
   border: 1px solid #000000;
   border-radius: 12px;
   box-shadow: 1px 1px 1px #000000;
@@ -316,10 +317,10 @@
   cursor: pointer;
 }
 .opacity-tidop > input[type=range]:focus::-ms-fill-lower {
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
 }
 .opacity-tidop > input[type=range]:focus::-ms-fill-upper {
-  background: rgba(253,201,0,.5);
+  background: rgba(36,98,47,1);
 }
 
 /* Filter */
