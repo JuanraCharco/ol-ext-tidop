@@ -1,3 +1,5 @@
+
+
 .ol-control.ol-layerswitcher-tidop.ol-layer-shop-tidop {
   height: calc(100% - 4em);
   max-height: unset;
@@ -17,7 +19,7 @@
 .ol-control.ol-layerswitcher-tidop.ol-layer-shop-tidop .panel-container {
   overflow-y: scroll;
   max-height: calc(100% - 17em);
-  border: 2px solid #24622f;
+  border: 2px solid var(--color-border-top-bottom);
   border-width: 2px 0;
   padding: 0;
 }
@@ -47,10 +49,10 @@
   box-sizing: border-box;
   border-radius: 3px;
   background-color: transparent;
-  color: rgba(63,76,54,1);
+  color: var(--color-layer-order);
 }
 .ol-layerswitcher-tidop.ol-layer-shop-tidop .layerup:hover {
-  background-color: rgba(63,76,54,.3);
+  background-color: var(--color7);
 }
 .ol-layerswitcher-tidop.ol-layer-shop-tidop .layerup:before {
   top: 50%;
@@ -131,10 +133,10 @@
 }
 .ol-layer-shop-tidop .ol-bar button {
   background-color: #fff;
-  color: rgba(63,76,54,1)
+  color: var(--color-bar-button)
 }
 .ol-layer-shop-tidop .ol-bar button:hover {
-  background-color: rgba(63,76,54,.2);
+  background-color: var(--color-background-bar-button-hover);
 }
 
 /* Touch device */
@@ -248,7 +250,7 @@
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000;
-  background: rgba(36,98,47,1);
+  /*background: var(--color1);*/
   border-radius: 6px;
   border: 1px solid #000000;
 }
@@ -264,7 +266,7 @@
   margin-top: -6px;
 }
 .opacity-tidop > input[type=range]:focus::-webkit-slider-runnable-track {
-  background: rgba(36,98,47,1);
+  /*background: var(--color1);*/
 }
 .opacity-tidop > input[type=range]::-moz-range-track {
   width: 100%;
@@ -272,7 +274,7 @@
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #000000;
-  background: rgba(36,98,47,1);
+  background: var(--color-opacity);
   border-radius: 6px;
   border: 1px solid #000000;
 }
@@ -295,13 +297,13 @@
   color: transparent;
 }
 .opacity-tidop > input[type=range]::-ms-fill-lower {
-  background: rgba(36,98,47,1);
+  /*background: var(--color1);*/
   border: 1px solid #000000;
   border-radius: 12px;
   box-shadow: 1px 1px 1px #000000;
 }
 .opacity-tidop > input[type=range]::-ms-fill-upper {
-  background: rgba(36,98,47,1);
+  /*background: var(--color1);*/
   border: 1px solid #000000;
   border-radius: 12px;
   box-shadow: 1px 1px 1px #000000;
@@ -317,10 +319,10 @@
   cursor: pointer;
 }
 .opacity-tidop > input[type=range]:focus::-ms-fill-lower {
-  background: rgba(36,98,47,1);
+  /*background: var(--color1);*/
 }
 .opacity-tidop > input[type=range]:focus::-ms-fill-upper {
-  background: rgba(36,98,47,1);
+  /*background: var(--color1);*/
 }
 
 /* Filter */

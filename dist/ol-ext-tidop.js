@@ -1,7 +1,7 @@
 /**
  * ol-ext-tidop - A set of cool extensions for OpenLayers (ol) in node modules structure
  * @description ol3,openlayers,popup,menu,symbol,renderer,filter,canvas,interaction,split,statistic,charts,pie,LayerSwitcher,toolbar,animation
- * @version v0.0.38
+ * @version v0.0.45
  * @author 
  * @see https://github.com/Viglino/ol-ext#,
  * @license BSD-3-Clause
@@ -7880,7 +7880,11 @@ ol.control.LayerSwitcherTidop = class olcontrolLayerSwitcherTidop extends ol.con
       element.classList.add('ol-unselectable')
       element.classList.add('ol-control')
       element.classList.add(options.collapsed !== false ? 'ol-collapsed' : 'ol-forceopen')
+      var defaultClassButton = 'default-button-image'
+      if (options.iconClass || options.imageUrl)
+        defaultClassButton = ''
       this.button = ol.ext.element.create('BUTTON', {
+        className: defaultClassButton,
         type: 'button',
         parent: element
       })
@@ -7897,6 +7901,20 @@ ol.control.LayerSwitcherTidop = class olcontrolLayerSwitcherTidop extends ol.con
         self.dispatchEvent({ type: 'toggle', collapsed: !element.classList.contains('ol-forceopen') })
         self.overflow()
       })
+      if (options.iconClass) {
+        this.icon = ol.ext.element.create('I', {
+          className: options.iconClass,
+          parent: this.button
+        })
+      }
+      else
+      if (options.imageUrl) {
+        this.icon = ol.ext.element.create('IMG', {
+          className: 'ol-layerswitcher-image-button',
+          src: options.imageUrl,
+          parent: this.button
+        })
+      }
       if (options.mouseover) {
         element.addEventListener('mouseleave', function () {
           element.classList.add("ol-collapsed")

@@ -36,8 +36,8 @@
 
 
   <!-- Map div -->
-  <div id="map" style="width: 100%; height: 800px;"></div>
-  <div id="externalContainer" style="width: 300px;background: #def;">
+  <div id="map" style="width: 80%; height: 800px;"></div>
+  <div id="externalContainer" style="width: 300px;background: #def;display: inline-block;margin: 10px">
   </div>
 
 
@@ -60,111 +60,33 @@
       ]
     });
 
-
-
-
-
-
-
-    var s2abndvi = new ol.layer.Image({
-      id: 's2abndvi',
-      title: 'Sentinel 2 AB NDVI',
-      source: new ol.source.ImageWMS({
-        ratio: 1,
-        url: 'http://163.172.31.229:8080/geoserver/wms',
-        params: {
-          LAYERS: 'timelayers:s2abndvi', TIME: '2023-01-01/2023-01-01', version:'1.1.0'
-        },
-      }),
-
-      toolbar: {
-        info: {
-          enable: true,
-          classIcon: 'fa fa-info-circle',
-          infoCallback: function (l) {
-            alert(l.get("title"));
-          }
-        },
-        extent: {
-          enable: true,
-          classIcon: 'fa fa-arrows-alt',
-          extentCallback: function (l) {
-            var ex = l.getExtent();
-            if (!ex)
-              ex = l.getSource().getExtent();
-            if (ex)
-              if (ex.length == 4 && ex[0] < ex[2] && ex[1] < ex[3])
-                map.getView().fit(ex, map.getSize());
-          }
-        },
-        remove: {
-          enable: true,
-          classIcon: 'fa fa-trash',
-          removeCallback: function (l) {
-            map.removeLayer(l);
-          }
-        },
-        time: {
-          enable: true,
-          lock: false,
-          lockClass: 'fa fa-lock',
-          unlockClass: 'fa fa-unlock',
-          format: 'dd/MM/yyyy',
-          lockCallback: function (l) {
-            alert(l.get("title") + ' - Lock: ' + l.get("toolbar").time.lock);
-          }
-        }
-      }
-
-    });
-
     // GeoJSON layer
     var vectorSource = new ol.source.Vector({
       url: '../data/poligonos_belinchon.geojson',
       format: new ol.format.GeoJSON(),
       attributions: [ "&copy; <a href='https://www.insee.fr'>INSEE</a>", "&copy; <a href='https://www.data.gouv.fr/fr/datasets/geofla-r/'>IGN</a>" ]
     });
-    var poligonos_belinchon = new ol.layer.Vector({
-      id: 'poligonosBelinchon',
-      title: 'Polígonos Belinchón',
-      name: 'Polígonos Belinchón',
-      source: vectorSource,
-      style: function(f) {
-        return new ol.style.Style({
-          image: new ol.style.RegularShape({
-            radius: 5,
-            radius2: 0,
-            points: 4,
-            stroke: new ol.style.Stroke({ color: "#000", width:1 })
-          }),
-          text: new ol.style.Text ({
-            text: f.get('id').toString(),
-            font: 'bold 11px sans-serif',
-          }),
-          stroke: new ol.style.Stroke({
-            width: 1,
-            color: [255,128,0]
-          }),
-          fill: new ol.style.Fill({
-            color: [255,128,0,.2]
-          })
-        })
-      },
 
-      toolbar: {
-
-      }
-
-    });
-
-    var otherGroup = new ol.layer.Group({
-      id: 'otherGroup',
-      title: 'Other group',
+    var Group01 = new ol.layer.Group({
+      id: 'Group01',
+      title: 'Group 1',
       openInLayerSwitcher: true,
       layers: [
         new ol.layer.Tile({
-          id: 'unidadesAdministrativas',
-          title: 'Unidades Administrativas dfds sfd s gdfgdf',
+          id: 'pnoa1',
+          title: 'Orto PNOA 1',
+          icon: 'fa fa-globe',
+          source: new ol.source.TileWMS({
+            ratio: 1,
+            url: 'https://www.ign.es/wms-inspire/pnoa-ma',
+            params: {
+              LAYERS: 'OI.OrthoimageCoverage'
+            },
+          }),
+        }),
+        new ol.layer.Tile({
+          id: 'unidadesAdministrativas1',
+          title: 'Unidades Administrativas 1',
           icon: 'fa fa-globe',
           source: new ol.source.TileWMS({
             ratio: 1,
@@ -173,43 +95,406 @@
               LAYERS: 'AU.AdministrativeUnit'
             },
           }),
+        }),
 
-          toolbar: {
-            info: {
-              enable: true,
-              classIcon: 'fa fa-info-circle',
-              infoCallback: function (l) {
-                alert(l.get("title"));
-              }
+        new ol.layer.Vector({
+          id: 'poligonosBelinchon1',
+          title: 'Polígonos Belinchón 1',
+          name: 'Polígonos Belinchón 1',
+          source: vectorSource,
+          style: function(f) {
+            return new ol.style.Style({
+              image: new ol.style.RegularShape({
+                radius: 5,
+                radius2: 0,
+                points: 4,
+                stroke: new ol.style.Stroke({ color: "#000", width:1 })
+              }),
+              text: new ol.style.Text ({
+                text: f.get('id').toString(),
+                font: 'bold 11px sans-serif',
+              }),
+              stroke: new ol.style.Stroke({
+                width: 1,
+                color: [255,128,0]
+              }),
+              fill: new ol.style.Fill({
+                color: [255,128,0,.2]
+              })
+            })
+          },
+          preview: '../data/oldmap.jpg'
+        }),
+
+        new ol.layer.Image({
+          id: 's2abndvi1',
+          title: 'Sentinel 2 AB NDVI 1',
+          icon: 'fa fa-globe',
+          source: new ol.source.ImageWMS({
+            ratio: 1,
+            url: 'http://163.172.31.229:8080/geoserver/wms',
+            params: {
+              LAYERS: 'timelayers:s2abndvi', TIME: '2023-01-01/2023-01-01', version:'1.1.0'
             },
-            extent: {
-              enable: true,
-              classIcon: 'fa fa-arrows-alt',
-              extentCallback: function (l) {
-                var ex = l.getExtent();
-                if (ex)
-                  if (ex.length == 4 && ex[0] < ex[2] && ex[1] < ex[3])
-                    map.getView().fit(l.getExtent(), map.getSize());
-              }
+          }),
+
+          tidop: {
+            time: {
+              value: '2023-01-01/2023-01-01',
+              valueClass: 'fechaColorRojo',
+              lock: true,
+              lockClass: 'fa-solid fa-lock',
+              unlockClass: 'fa-solid fa-lock-open'
+            }
+          }
+        }),
+
+
+      ]
+    });
+
+    var Group02 = new ol.layer.Group({
+      id: 'Group02',
+      title: 'Group 2',
+      openInLayerSwitcher: true,
+      layers: [
+        new ol.layer.Tile({
+          id: 'pnoa2',
+          title: 'Orto PNOA 2',
+          icon: 'fa fa-globe',
+          source: new ol.source.TileWMS({
+            ratio: 1,
+            url: 'https://www.ign.es/wms-inspire/pnoa-ma',
+            params: {
+              LAYERS: 'OI.OrthoimageCoverage'
             },
-            remove: {
-              enable: true,
-              classIcon: 'fa fa-trash',
-              removeCallback: function (l) {
-                map.removeLayer(l);
-              }
+          }),
+        }),
+        new ol.layer.Tile({
+          id: 'unidadesAdministrativas2',
+          title: 'Unidades Administrativas 2',
+          icon: 'fa fa-globe',
+          source: new ol.source.TileWMS({
+            ratio: 1,
+            url: 'https://www.ign.es/wms-inspire/unidades-administrativas',
+            params: {
+              LAYERS: 'AU.AdministrativeUnit'
             },
-            opacity: {
-              enable: false
+          }),
+        }),
+
+        new ol.layer.Vector({
+          id: 'poligonosBelinchon2',
+          title: 'Polígonos Belinchón 2',
+          name: 'Polígonos Belinchón 2',
+          source: vectorSource,
+          style: function(f) {
+            return new ol.style.Style({
+              image: new ol.style.RegularShape({
+                radius: 5,
+                radius2: 0,
+                points: 4,
+                stroke: new ol.style.Stroke({ color: "#000", width:1 })
+              }),
+              text: new ol.style.Text ({
+                text: f.get('id').toString(),
+                font: 'bold 11px sans-serif',
+              }),
+              stroke: new ol.style.Stroke({
+                width: 1,
+                color: [255,128,0]
+              }),
+              fill: new ol.style.Fill({
+                color: [255,128,0,.2]
+              })
+            })
+          },
+          preview: '../data/oldmap.jpg'
+        }),
+
+        new ol.layer.Image({
+          id: 's2abndvi2',
+          title: 'Sentinel 2 AB NDVI 2',
+          source: new ol.source.ImageWMS({
+            ratio: 1,
+            url: 'http://163.172.31.229:8080/geoserver/wms',
+            params: {
+              LAYERS: 'timelayers:s2abndvi', TIME: '2023-01-01/2023-01-01', version:'1.1.0'
+            },
+          }),
+
+          tidop: {
+            time: {
+              value: '2023-01-01/2023-01-01',
+              valueClass: 'fechaColorRojo',
+              lock: true,
+              lockClass: 'fa-solid fa-lock',
+              unlockClass: 'fa-solid fa-lock-open'
+            }
+          }
+        }),
+
+
+      ]
+    });
+
+    var Group03 = new ol.layer.Group({
+      id: 'Group03',
+      title: 'Group 3',
+      openInLayerSwitcher: true,
+      layers: [
+        new ol.layer.Tile({
+          id: 'pnoa3',
+          title: 'Orto PNOA 3',
+          icon: 'fa fa-globe',
+          source: new ol.source.TileWMS({
+            ratio: 1,
+            url: 'https://www.ign.es/wms-inspire/pnoa-ma',
+            params: {
+              LAYERS: 'OI.OrthoimageCoverage'
+            },
+          }),
+        }),
+        new ol.layer.Tile({
+          id: 'unidadesAdministrativas3',
+          title: 'Unidades Administrativas 3',
+          icon: 'fa fa-globe',
+          source: new ol.source.TileWMS({
+            ratio: 1,
+            url: 'https://www.ign.es/wms-inspire/unidades-administrativas',
+            params: {
+              LAYERS: 'AU.AdministrativeUnit'
+            },
+          }),
+        }),
+
+        new ol.layer.Vector({
+          id: 'poligonosBelinchon3',
+          title: 'Polígonos Belinchón 3',
+          name: 'Polígonos Belinchón 3',
+          source: vectorSource,
+          style: function(f) {
+            return new ol.style.Style({
+              image: new ol.style.RegularShape({
+                radius: 5,
+                radius2: 0,
+                points: 4,
+                stroke: new ol.style.Stroke({ color: "#000", width:1 })
+              }),
+              text: new ol.style.Text ({
+                text: f.get('id').toString(),
+                font: 'bold 11px sans-serif',
+              }),
+              stroke: new ol.style.Stroke({
+                width: 1,
+                color: [255,128,0]
+              }),
+              fill: new ol.style.Fill({
+                color: [255,128,0,.2]
+              })
+            })
+          },
+          preview: '../data/oldmap.jpg'
+        }),
+
+        new ol.layer.Image({
+          id: 's2abndvi3',
+          title: 'Sentinel 2 AB NDVI 3',
+          source: new ol.source.ImageWMS({
+            ratio: 1,
+            url: 'http://163.172.31.229:8080/geoserver/wms',
+            params: {
+              LAYERS: 'timelayers:s2abndvi', TIME: '2023-01-01/2023-01-01', version:'1.1.0'
+            },
+          }),
+
+          tidop: {
+            time: {
+              value: '2023-01-01/2023-01-01',
+              valueClass: 'fechaColorRojo',
+              lock: true,
+              lockClass: 'fa-solid fa-lock',
+              unlockClass: 'fa-solid fa-lock-open'
             }
           }
 
         }),
-        poligonos_belinchon,
-        s2abndvi
+
+
       ]
     });
 
+    var Group04 = new ol.layer.Group({
+      id: 'Group04',
+      title: 'Group 4',
+      openInLayerSwitcher: true,
+      layers: [
+        new ol.layer.Tile({
+          id: 'pnoa4',
+          title: 'Orto PNOA 4',
+          icon: 'fa fa-globe',
+          source: new ol.source.TileWMS({
+            ratio: 1,
+            url: 'https://www.ign.es/wms-inspire/pnoa-ma',
+            params: {
+              LAYERS: 'OI.OrthoimageCoverage'
+            },
+          }),
+        }),
+        new ol.layer.Tile({
+          id: 'unidadesAdministrativas4',
+          title: 'Unidades Administrativas 4',
+          icon: 'fa fa-globe',
+          source: new ol.source.TileWMS({
+            ratio: 1,
+            url: 'https://www.ign.es/wms-inspire/unidades-administrativas',
+            params: {
+              LAYERS: 'AU.AdministrativeUnit'
+            },
+          }),
+        }),
+
+        new ol.layer.Vector({
+          id: 'poligonosBelinchon4',
+          title: 'Polígonos Belinchón 4',
+          name: 'Polígonos Belinchón 4',
+          source: vectorSource,
+          style: function(f) {
+            return new ol.style.Style({
+              image: new ol.style.RegularShape({
+                radius: 5,
+                radius2: 0,
+                points: 4,
+                stroke: new ol.style.Stroke({ color: "#000", width:1 })
+              }),
+              text: new ol.style.Text ({
+                text: f.get('id').toString(),
+                font: 'bold 11px sans-serif',
+              }),
+              stroke: new ol.style.Stroke({
+                width: 1,
+                color: [255,128,0]
+              }),
+              fill: new ol.style.Fill({
+                color: [255,128,0,.2]
+              })
+            })
+          },
+          preview: '../data/oldmap.jpg'
+        }),
+
+        new ol.layer.Image({
+          id: 's2abndvi4',
+          title: 'Sentinel 2 AB NDVI 4',
+          source: new ol.source.ImageWMS({
+            ratio: 1,
+            url: 'http://163.172.31.229:8080/geoserver/wms',
+            params: {
+              LAYERS: 'timelayers:s2abndvi', TIME: '2023-01-01/2023-01-01', version:'1.1.0'
+            },
+          }),
+
+          tidop: {
+            time: {
+              value: '2023-01-01/2023-01-01',
+              valueClass: 'fechaColorRojo',
+              lock: true,
+              lockClass: 'fa-solid fa-lock',
+              unlockClass: 'fa-solid fa-lock-open'
+            }
+          }
+
+        }),
+
+
+      ]
+    });
+
+    var Group05 = new ol.layer.Group({
+      id: 'Group05',
+      title: 'Group 5',
+      openInLayerSwitcher: true,
+      layers: [
+        new ol.layer.Tile({
+          id: 'pnoa5',
+          title: 'Orto PNOA 5',
+          icon: 'fa fa-globe',
+          source: new ol.source.TileWMS({
+            ratio: 1,
+            url: 'https://www.ign.es/wms-inspire/pnoa-ma',
+            params: {
+              LAYERS: 'OI.OrthoimageCoverage'
+            },
+          }),
+        }),
+        new ol.layer.Tile({
+          id: 'unidadesAdministrativas5',
+          title: 'Unidades Administrativas 5',
+          icon: 'fa fa-globe',
+          source: new ol.source.TileWMS({
+            ratio: 1,
+            url: 'https://www.ign.es/wms-inspire/unidades-administrativas',
+            params: {
+              LAYERS: 'AU.AdministrativeUnit'
+            },
+          }),
+        }),
+
+        new ol.layer.Vector({
+          id: 'poligonosBelinchon5',
+          title: 'Polígonos Belinchón 5',
+          name: 'Polígonos Belinchón 5',
+          source: vectorSource,
+          style: function(f) {
+            return new ol.style.Style({
+              image: new ol.style.RegularShape({
+                radius: 5,
+                radius2: 0,
+                points: 4,
+                stroke: new ol.style.Stroke({ color: "#000", width:1 })
+              }),
+              text: new ol.style.Text ({
+                text: f.get('id').toString(),
+                font: 'bold 11px sans-serif',
+              }),
+              stroke: new ol.style.Stroke({
+                width: 1,
+                color: [255,128,0]
+              }),
+              fill: new ol.style.Fill({
+                color: [255,128,0,.2]
+              })
+            })
+          },
+          preview: '../data/oldmap.jpg'
+        }),
+
+        new ol.layer.Image({
+          id: 's2abndvi5',
+          title: 'Sentinel 2 AB NDVI 5',
+          source: new ol.source.ImageWMS({
+            ratio: 1,
+            url: 'http://163.172.31.229:8080/geoserver/wms',
+            params: {
+              LAYERS: 'timelayers:s2abndvi', TIME: '2023-01-01/2023-01-01', version:'1.1.0'
+            },
+          }),
+
+          tidop: {
+            time: {
+              value: '2023-01-01/2023-01-01',
+              valueClass: 'fechaColorRojo',
+              lock: true,
+              lockClass: 'fa-solid fa-lock',
+              unlockClass: 'fa-solid fa-lock-open'
+            }
+          }
+
+        }),
+
+
+      ]
+    });
 
     // The Map
     var map = new ol.Map({
@@ -219,11 +504,18 @@
         center: [-403801.54541791923, 4867016.958947782]
       }),
       layers: [
-        baseLayers, otherGroup
+        baseLayers, Group01, Group02, Group03, Group04, Group05
       ]
     });
 
     // Add control inside the map
+    var ctrl_inside = new ol.control.LayerSwitcherTidop({
+      minibar: true,
+      collapsed: false
+    });
+    map.addControl(ctrl_inside);
+
+
     var ctrl = new ol.control.LayerSwitcherTidop({
       target: $("#externalContainer").get(0),
       minibar: true,

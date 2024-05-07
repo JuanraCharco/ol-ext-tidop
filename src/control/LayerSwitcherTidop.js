@@ -81,7 +81,12 @@ var ol_control_LayerSwitcherTidop = class olcontrolLayerSwitcherTidop extends ol
       element.classList.add('ol-control')
       element.classList.add(options.collapsed !== false ? 'ol-collapsed' : 'ol-forceopen')
 
+      var defaultClassButton = 'default-button-image'
+      if (options.iconClass || options.imageUrl)
+        defaultClassButton = ''
+
       this.button = ol_ext_element.create('BUTTON', {
+        className: defaultClassButton,
         type: 'button',
         parent: element
       })
@@ -98,6 +103,21 @@ var ol_control_LayerSwitcherTidop = class olcontrolLayerSwitcherTidop extends ol
         self.dispatchEvent({ type: 'toggle', collapsed: !element.classList.contains('ol-forceopen') })
         self.overflow()
       })
+
+      if (options.iconClass) {
+        this.icon = ol_ext_element.create('I', {
+          className: options.iconClass,
+          parent: this.button
+        })
+      }
+      else
+      if (options.imageUrl) {
+        this.icon = ol_ext_element.create('IMG', {
+          className: 'ol-layerswitcher-image-button',
+          src: options.imageUrl,
+          parent: this.button
+        })
+      }
 
       if (options.mouseover) {
         element.addEventListener('mouseleave', function () {

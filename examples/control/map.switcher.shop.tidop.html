@@ -80,13 +80,6 @@ tidop: {
       ]
     });
 
-
-
-
-
-
-
-
     // GeoJSON layer
     var vectorSource = new ol.source.Vector({
       url: '../data/poligonos_belinchon.geojson',
@@ -537,9 +530,10 @@ tidop: {
 
     // Add control inside the map
     var ctrl_inside = new ol.control.LayerShopTidop({
-      // target: $("#externalContainer").get(0),
       minibar: true,
-      collapsed: false
+      collapsed: false,
+      iconClass: 'fa fa-clone'
+      //imageUrl: '../data/camera.png'
     });
     map.addControl(ctrl_inside);
 
