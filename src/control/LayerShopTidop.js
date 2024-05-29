@@ -155,6 +155,37 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
       parent: this.lockButton
     })
 
+    this.extentDiv = ol_ext_element.create('DIV', {
+      className: ' ol-button ol-unselectable ol-control-tidop d-none-tidop',
+      click: function (e) {
+        e.stopPropagation()
+        e.preventDefault()
+        var l = this.getSelection() //getMap().getLayers().item(this.getMap().getLayers().getLength() - 1)
+        var id = l.get('id')
+
+        if (typeof l.getSource === 'function') {
+          //console.log(l.getSource())
+          if (typeof l.getSource().getExtent === 'function') {
+            //console.log(l.getSource().getExtent())
+            this.getMap().getView().fit(l.getSource().getExtent(), this.getMap().getSize())
+          }
+        }
+
+
+        //this.getMap().getView().fit(l.getExtent(), this.getMap().getSize())
+
+      }.bind(this),
+      parent: this._topbar
+    })
+    this.extentButton = ol_ext_element.create('BUTTON', {
+      type: 'button',
+      parent: this.extentDiv
+    })
+    this.extentI = ol_ext_element.create('I', {
+      className:'fa-solid fa-maximize',
+      parent: this.extentButton
+    })
+
     this.removeDiv = ol_ext_element.create('DIV', {
       className: ' ol-button ol-unselectable ol-control-tidop',
       click: function (e) {
@@ -204,6 +235,7 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
       className:'fa-solid fa-trash-alt',
       parent: this.removeButton
     })
+
 
 
 
@@ -266,11 +298,15 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
       if (!this.getMap())
         return
       layer = this.getMap().getLayers().item(this.getMap().getLayers().getLength() - 1)
+      if (!layer)
+        return
     }
     this._selectedLayer = layer
 
-    if (layer instanceof ol_layer_Group)
+    if (layer instanceof ol_layer_Group) {
       this.lockDiv.classList.add('d-none-tidop')
+      this.extentDiv.classList.add('d-none-tidop')
+    }
     else {
       if (layer.get('tidop') === undefined || layer.get('tidop') === null)
         this.lockDiv.classList.add('d-none-tidop')
@@ -282,6 +318,13 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
         this.lockDiv.classList.add('d-none-tidop')
       else
         this.lockDiv.classList.remove('d-none-tidop')
+
+      if (typeof layer.getSource === 'function') {
+        //console.log(layer.getSource().urls[0])
+        if (typeof layer.getSource().getExtent === 'function') {
+          this.extentDiv.classList.remove('d-none-tidop')
+        }
+      }
     }
 
     // Opacity
@@ -299,7 +342,7 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
     // Change layer visibility
     var setVisibility = function (e) {
       e.stopPropagation()
-      e.preventDefault()
+      //e.preventDefault()
       var l = self._getLayerForLI(this.parentNode.parentNode)
       self.switchLayerVisibility(l, collection)
       if (self.get('selection') && l.getVisible()) {
@@ -380,7 +423,7 @@ var ol_control_LayerShopTidop = class olcontrolLayerShopTidop extends ol_control
       // Visibility
       ol_ext_element.create('INPUT', {
         type: layer.get('baseLayer') ? 'radio' : 'checkbox',
-        className: 'ol-visibility',
+        className: 'ol-visibility form-check-input h-15px w-15px',
         checked: layer.getVisible(),
         click: setVisibility,
         parent: d

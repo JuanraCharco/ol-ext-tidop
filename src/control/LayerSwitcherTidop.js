@@ -51,13 +51,13 @@ var ol_control_LayerSwitcherTidop = class olcontrolLayerSwitcherTidop extends ol
   constructor(options) {
     options = options || {}
     var element = ol_ext_element.create('DIV', {
-      className: options.switcherClass || 'ol-layerswitcher-tidop'
+      className: (options.switcherClass || 'ol-layerswitcher-tidop')
     })
     super({
       element: element,
       target: options.target
     })
-    
+
     var self = this
     this.dcount = 0
     this.show_progress = options.show_progress
@@ -794,7 +794,7 @@ var ol_control_LayerSwitcherTidop = class olcontrolLayerSwitcherTidop extends ol
       // Visibility
       ol_ext_element.create('INPUT', {
         type: layer.get('baseLayer') ? 'radio' : 'checkbox',
-        className: 'ol-visibility',
+        className: 'ol-visibility form-check-input h-15px w-15px',
         checked: layer.getVisible(),
         click: setVisibility,
         parent: d

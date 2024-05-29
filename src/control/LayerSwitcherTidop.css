@@ -531,3 +531,6 @@
   width:0;
 }
 
+input.ol-visibility.form-check-input.h-15px.w-15px {
+  margin-top: 0.22em !important;
+}

@@ -1,7 +1,7 @@
 /**
  * ol-ext-tidop - A set of cool extensions for OpenLayers (ol) in node modules structure
  * @description ol3,openlayers,popup,menu,symbol,renderer,filter,canvas,interaction,split,statistic,charts,pie,LayerSwitcher,toolbar,animation
- * @version v0.0.45
+ * @version v0.0.50
  * @author 
  * @see https://github.com/Viglino/ol-ext#,
  * @license BSD-3-Clause
@@ -7854,7 +7854,7 @@ ol.control.LayerSwitcherTidop = class olcontrolLayerSwitcherTidop extends ol.con
   constructor(options) {
     options = options || {}
     var element = ol.ext.element.create('DIV', {
-      className: options.switcherClass || 'ol-layerswitcher-tidop'
+      className: (options.switcherClass || 'ol-layerswitcher-tidop')
     })
     super({
       element: element,
@@ -8565,7 +8565,7 @@ ol.control.LayerSwitcherTidop = class olcontrolLayerSwitcherTidop extends ol.con
       // Visibility
       ol.ext.element.create('INPUT', {
         type: layer.get('baseLayer') ? 'radio' : 'checkbox',
-        className: 'ol-visibility',
+        className: 'ol-visibility form-check-input h-15px w-15px',
         checked: layer.getVisible(),
         click: setVisibility,
         parent: d
@@ -13877,6 +13877,32 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
       className:'fa-solid fa-lock-open',
       parent: this.lockButton
     })
+    this.extentDiv = ol.ext.element.create('DIV', {
+      className: ' ol-button ol-unselectable ol-control-tidop d-none-tidop',
+      click: function (e) {
+        e.stopPropagation()
+        e.preventDefault()
+        var l = this.getSelection() //getMap().getLayers().item(this.getMap().getLayers().getLength() - 1)
+        var id = l.get('id')
+        if (typeof l.getSource === 'function') {
+          //console.log(l.getSource())
+          if (typeof l.getSource().getExtent === 'function') {
+            //console.log(l.getSource().getExtent())
+            this.getMap().getView().fit(l.getSource().getExtent(), this.getMap().getSize())
+          }
+        }
+        //this.getMap().getView().fit(l.getExtent(), this.getMap().getSize())
+      }.bind(this),
+      parent: this._topbar
+    })
+    this.extentButton = ol.ext.element.create('BUTTON', {
+      type: 'button',
+      parent: this.extentDiv
+    })
+    this.extentI = ol.ext.element.create('I', {
+      className:'fa-solid fa-maximize',
+      parent: this.extentButton
+    })
     this.removeDiv = ol.ext.element.create('DIV', {
       className: ' ol-button ol-unselectable ol-control-tidop',
       click: function (e) {
@@ -13978,10 +14004,14 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
       if (!this.getMap())
         return
       layer = this.getMap().getLayers().item(this.getMap().getLayers().getLength() - 1)
+      if (!layer)
+        return
     }
     this._selectedLayer = layer
-    if (layer instanceof ol.layer.Group)
+    if (layer instanceof ol.layer.Group) {
       this.lockDiv.classList.add('d-none-tidop')
+      this.extentDiv.classList.add('d-none-tidop')
+    }
     else {
       if (layer.get('tidop') === undefined || layer.get('tidop') === null)
         this.lockDiv.classList.add('d-none-tidop')
@@ -13993,6 +14023,12 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
         this.lockDiv.classList.add('d-none-tidop')
       else
         this.lockDiv.classList.remove('d-none-tidop')
+      if (typeof layer.getSource === 'function') {
+        //console.log(layer.getSource().urls[0])
+        if (typeof layer.getSource().getExtent === 'function') {
+          this.extentDiv.classList.remove('d-none-tidop')
+        }
+      }
     }
     // Opacity
     this.opacityInput.value = layer.getOpacity()
@@ -14006,7 +14042,7 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
     // Change layer visibility
     var setVisibility = function (e) {
       e.stopPropagation()
-      e.preventDefault()
+      //e.preventDefault()
       var l = self._getLayerForLI(this.parentNode.parentNode)
       self.switchLayerVisibility(l, collection)
       if (self.get('selection') && l.getVisible()) {
@@ -14080,7 +14116,7 @@ ol.control.LayerShopTidop = class olcontrolLayerShopTidop extends ol.control.Lay
       // Visibility
       ol.ext.element.create('INPUT', {
         type: layer.get('baseLayer') ? 'radio' : 'checkbox',
-        className: 'ol-visibility',
+        className: 'ol-visibility form-check-input h-15px w-15px',
         checked: layer.getVisible(),
         click: setVisibility,
         parent: d

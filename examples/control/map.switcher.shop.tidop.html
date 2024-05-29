@@ -27,6 +27,7 @@
   <script src="https://unpkg.com/elm-pep"></script>
 
   <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../data/font-tidop-gis/font-tidop-gis.css" />
   <style>
     .fechaColorRojo {
       color: #f00;
@@ -69,6 +70,7 @@ tidop: {
       id: 'baseLayers',
       title: 'Base Layers',
       openInLayerSwitcher: true,
+      icon: 'ftg-fw ftg-globe-o',
       layers: [
         new ol.layer.Tile({
           title: "OSM",
@@ -90,7 +92,7 @@ tidop: {
     var Group01 = new ol.layer.Group({
       id: 'Group01',
       title: 'Group 1',
-      openInLayerSwitcher: true,
+      openInLayerSwitcher: false,
       layers: [
         new ol.layer.Tile({
           id: 'pnoa1',
@@ -176,7 +178,7 @@ tidop: {
     var Group02 = new ol.layer.Group({
       id: 'Group02',
       title: 'Group 2',
-      openInLayerSwitcher: true,
+      openInLayerSwitcher: false,
       layers: [
         new ol.layer.Tile({
           id: 'pnoa2',
@@ -261,7 +263,7 @@ tidop: {
     var Group03 = new ol.layer.Group({
       id: 'Group03',
       title: 'Group 3',
-      openInLayerSwitcher: true,
+      openInLayerSwitcher: false,
       layers: [
         new ol.layer.Tile({
           id: 'pnoa3',
@@ -347,7 +349,7 @@ tidop: {
     var Group04 = new ol.layer.Group({
       id: 'Group04',
       title: 'Group 4',
-      openInLayerSwitcher: true,
+      openInLayerSwitcher: false,
       layers: [
         new ol.layer.Tile({
           id: 'pnoa4',
@@ -433,7 +435,7 @@ tidop: {
     var Group05 = new ol.layer.Group({
       id: 'Group05',
       title: 'Group 5',
-      openInLayerSwitcher: true,
+      openInLayerSwitcher: false,
       layers: [
         new ol.layer.Tile({
           id: 'pnoa5',
@@ -538,6 +540,7 @@ tidop: {
     map.addControl(ctrl_inside);
 
     var ctrl = new ol.control.LayerShopTidop({
+      classNames: 'checkbox-square',
       target: $("#externalContainer").get(0),
       minibar: true,
       collapsed: false
